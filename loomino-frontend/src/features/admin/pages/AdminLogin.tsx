@@ -137,6 +137,13 @@ function AdminLogin() {
           )}
         </button>
 
+        <Link
+          to="/admin/forgot-password"
+          className="mt-4 block text-center text-[13px] font-medium text-[#A88548] hover:underline"
+        >
+          Forgot your password?
+        </Link>
+
         <p className="mt-6 text-center text-[12px] text-[#A89A80]">
           Authorized personnel only. Access is restricted to
           staff accounts.

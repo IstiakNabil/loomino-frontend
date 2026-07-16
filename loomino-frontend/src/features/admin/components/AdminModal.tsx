@@ -6,13 +6,21 @@ interface AdminModalProps {
   title: string;
   onClose: () => void;
   children: ReactNode;
+  /** Modal width. Default "sm" (480px). */
+  size?: "sm" | "lg";
 }
+
+const WIDTHS: Record<string, string> = {
+  sm: "max-w-[480px]",
+  lg: "max-w-[860px]",
+};
 
 function AdminModal({
   open,
   title,
   onClose,
   children,
+  size = "sm",
 }: AdminModalProps) {
   if (!open) return null;
 
@@ -24,8 +32,10 @@ function AdminModal({
         onClick={onClose}
         className="absolute inset-0 bg-black/40"
       />
-      <div className="relative z-10 w-full max-w-[480px] rounded-2xl bg-white p-6 shadow-xl">
-        <div className="mb-5 flex items-center justify-between">
+      <div
+        className={`relative z-10 flex max-h-[90vh] w-full flex-col rounded-2xl bg-white shadow-xl ${WIDTHS[size]}`}
+      >
+        <div className="flex items-center justify-between border-b border-[#EFE9DE] px-6 py-4">
           <h2 className="text-[18px] font-bold text-[#2C2418]">
             {title}
           </h2>
@@ -38,7 +48,10 @@ function AdminModal({
             <X size={20} />
           </button>
         </div>
-        {children}
+
+        <div className="overflow-y-auto px-6 py-5">
+          {children}
+        </div>
       </div>
     </div>
   );

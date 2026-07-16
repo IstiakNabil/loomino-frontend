@@ -78,3 +78,56 @@ export interface AdminSubscriber {
   email: string;
   subscribed_at: string;
 }
+
+/**
+ * Product shape returned by the admin detail endpoint and
+ * accepted by create/update. Note: unlike AdminProduct (the
+ * list shape, where `category` is the category NAME), here
+ * `category`/`brand` are foreign-key ids.
+ */
+export interface AdminProductDetail {
+  id: number;
+  name: string;
+  slug: string;
+  category: number | null;
+  category_name: string | null;
+  brand: number | null;
+  brand_name: string | null;
+  short_description: string;
+  description: string;
+  fitting: string;
+  fabric_and_care: string;
+  shipping_and_return: string;
+  regular_price: string;
+  discount_price: string | null;
+  is_featured: boolean;
+  is_new_arrival: boolean;
+  is_modiweek: boolean;
+  is_active: boolean;
+  thumbnail: string | null;
+  total_stock: number;
+}
+
+/** Payload accepted by POST/PATCH /products/admin/ */
+export interface ProductPayload {
+  name: string;
+  category: number | null;
+  brand: number | null;
+  short_description: string;
+  description: string;
+  fitting: string;
+  fabric_and_care: string;
+  shipping_and_return: string;
+  regular_price: string;
+  discount_price: string | null;
+  is_featured: boolean;
+  is_new_arrival: boolean;
+  is_modiweek: boolean;
+  is_active: boolean;
+}
+
+export interface AdminBrand {
+  id: number;
+  name: string;
+  slug: string;
+}

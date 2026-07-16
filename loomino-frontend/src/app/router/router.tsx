@@ -31,6 +31,7 @@ import NotFoundPage from "@/pages/NotFoundPage";
 import AdminRoute from "@/features/admin/layout/AdminRoute";
 import AdminGuestRoute from "@/features/admin/layout/AdminGuestRoute";
 import AdminLogin from "@/features/admin/pages/AdminLogin";
+import AdminForgotPassword from "@/features/admin/pages/AdminForgotPassword";
 import AdminRegister from "@/features/admin/pages/AdminRegister";
 import AdminLayout from "@/features/admin/layout/AdminLayout";
 import AdminDashboard from "@/features/admin/pages/AdminDashboard";
@@ -178,6 +179,10 @@ export const router = createBrowserRouter([
     element: <AdminGuestRoute />,
     children: [
       { path: "/admin/login", element: <AdminLogin /> },
+      {
+        path: "/admin/forgot-password",
+        element: <AdminForgotPassword />,
+      },
       {
         path: "/admin/register",
         element: <AdminRegister />,

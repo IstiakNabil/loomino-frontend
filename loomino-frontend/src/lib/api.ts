@@ -35,6 +35,14 @@ function isAuthEndpoint(url?: string) {
 }
 
 api.interceptors.request.use((config) => {
+  // Never attach a (possibly stale) token to auth endpoints
+  // like login/register/forgot-password — the backend runs
+  // JWT auth on every request and would reject a stale token
+  // with 401 before the AllowAny view even runs.
+  if (isAuthEndpoint(config.url)) {
+    return config;
+  }
+
   const token = authStorage.getAccessToken();
 
   if (token) {

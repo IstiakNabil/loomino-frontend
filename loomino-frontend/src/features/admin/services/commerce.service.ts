@@ -2,6 +2,9 @@ import api from "@/lib/api";
 
 import type {
   AdminProduct,
+  AdminProductDetail,
+  ProductPayload,
+  AdminBrand,
   AdminVariant,
   AdminReview,
   AdminOrder,
@@ -24,6 +27,36 @@ export async function listProducts(): Promise<AdminProduct[]> {
 export async function deleteProduct(id: number): Promise<void> {
   await api.delete(`/products/admin/${id}/`);
 }
+export async function getProduct(
+  id: number,
+): Promise<AdminProductDetail> {
+  const res = await api.get(`/products/admin/${id}/`);
+  return res.data;
+}
+
+export async function createProduct(
+  payload: ProductPayload,
+): Promise<AdminProductDetail> {
+  const res = await api.post("/products/admin/", payload);
+  return res.data;
+}
+
+export async function updateProduct(
+  id: number,
+  payload: Partial<ProductPayload>,
+): Promise<AdminProductDetail> {
+  const res = await api.patch(
+    `/products/admin/${id}/`,
+    payload,
+  );
+  return res.data;
+}
+
+export async function listBrands(): Promise<AdminBrand[]> {
+  const res = await api.get("/products/brands/");
+  return unwrap<AdminBrand>(res.data);
+}
+
 export async function toggleProductActive(
   id: number,
   is_active: boolean,
