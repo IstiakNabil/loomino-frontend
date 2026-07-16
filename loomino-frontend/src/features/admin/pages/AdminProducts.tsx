@@ -57,10 +57,14 @@ function AdminProducts() {
 
   const create = useMutation({
     mutationFn: createProduct,
-    onSuccess: () => {
+    onSuccess: (product) => {
       invalidate();
-      toast.success("Product created.");
-      setModalOpen(false);
+      toast.success(
+        "Product created — you can now add images.",
+      );
+      // Keep the modal open in edit mode so images can be
+      // uploaded straight away (upload needs a product id).
+      setEditing(product);
     },
     onError: (e) =>
       toast.error(

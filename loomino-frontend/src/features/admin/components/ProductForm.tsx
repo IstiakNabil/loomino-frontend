@@ -5,6 +5,7 @@ import { listCategories } from "../services/catalog.service";
 import { listBrands } from "../services/commerce.service";
 import AdminButton from "./AdminButton";
 import SectionToggle from "./SectionToggle";
+import ProductImageManager from "./ProductImageManager";
 import type {
   AdminProductDetail,
   ProductPayload,
@@ -266,6 +267,26 @@ function ProductForm({
         </label>
       </div>
 
+      {/* Images */}
+      <div className="mt-6">
+        <p className="mb-1 text-[14px] font-bold text-[#2C2418]">
+          Product Images
+        </p>
+        {initial ? (
+          <>
+            <p className="mb-3 text-[12px] text-[#8A7C64]">
+              Upload the cover, hover and gallery images.
+            </p>
+            <ProductImageManager productId={initial.id} />
+          </>
+        ) : (
+          <p className="rounded-lg bg-[#FBF3D9] px-3 py-2 text-[12px] leading-[1.6] text-[#8A6D1E]">
+            Save the product first — you'll be able to
+            upload images straight after.
+          </p>
+        )}
+      </div>
+
       {/* Storefront sections */}
       <div className="mt-6">
         <p className="mb-1 text-[14px] font-bold text-[#2C2418]">
@@ -320,7 +341,7 @@ function ProductForm({
 
       {!initial && (
         <p className="mt-3 text-[12px] leading-[1.6] text-[#A89A80]">
-          After creating the product, add its images and
+          After saving you can upload images here. Add its
           variants (colour / size / stock) from Variant
           Products so it can be purchased.
         </p>

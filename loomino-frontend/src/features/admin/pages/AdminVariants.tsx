@@ -1,21 +1,50 @@
+import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Layers, Trash2 } from "lucide-react";
+import { Layers, Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
 
 import { formatPrice, getMediaUrl } from "@/lib/utils";
 import { getApiErrorMessage } from "@/lib/apiError";
 import AdminPageHeader from "../components/AdminPageHeader";
+import AdminModal from "../components/AdminModal";
+import AdminButton from "../components/AdminButton";
+import VariantForm from "../components/VariantForm";
 import {
   listVariants,
   deleteVariant,
+  createVariant,
 } from "../services/commerce.service";
-import type { AdminVariant } from "../types/commerce";
+import type {
+  AdminVariant,
+  VariantPayload,
+} from "../types/commerce";
 
 function AdminVariants() {
   const queryClient = useQueryClient();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["admin", "variants"],
     queryFn: listVariants,
+  });
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const create = useMutation({
+    mutationFn: (payload: VariantPayload) =>
+      createVariant(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["admin", "variants"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["admin", "products"],
+      });
+      toast.success("Variant added.");
+      setModalOpen(false);
+    },
+    onError: (e) =>
+      toast.error(
+        getApiErrorMessage(e, "Couldn't add variant."),
+      ),
   });
 
   const del = useMutation({
@@ -38,7 +67,24 @@ function AdminVariants() {
         icon={<Layers size={20} />}
         title="Variant Products"
         subtitle="Manage colors, sizes and stocks for product variants"
+        action={
+          <AdminButton onClick={() => setModalOpen(true)}>
+            <Plus size={16} /> Add Variant
+          </AdminButton>
+        }
       />
+
+      <AdminModal
+        open={modalOpen}
+        title="Add Variant"
+        onClose={() => setModalOpen(false)}
+      >
+        <VariantForm
+          submitting={create.isPending}
+          onCancel={() => setModalOpen(false)}
+          onSubmit={(payload) => create.mutate(payload)}
+        />
+      </AdminModal>
 
       {isLoading && (
         <div className="rounded-2xl border border-[#EFE9DE] bg-white px-6 py-10 text-center text-[14px] text-[#A89A80]">

@@ -38,6 +38,7 @@ import AdminDashboard from "@/features/admin/pages/AdminDashboard";
 import AdminColors from "@/features/admin/pages/AdminColors";
 import AdminSizes from "@/features/admin/pages/AdminSizes";
 import AdminCategories from "@/features/admin/pages/AdminCategories";
+import AdminBrands from "@/features/admin/pages/AdminBrands";
 import AdminCustomers from "@/features/admin/pages/AdminCustomers";
 import AdminProducts from "@/features/admin/pages/AdminProducts";
 import AdminVariants from "@/features/admin/pages/AdminVariants";
@@ -204,6 +205,10 @@ export const router = createBrowserRouter([
           {
             path: "categories",
             element: <AdminCategories />,
+          },
+          {
+            path: "brands",
+            element: <AdminBrands />,
           },
           {
             path: "colors",

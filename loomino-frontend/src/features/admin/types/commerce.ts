@@ -131,3 +131,44 @@ export interface AdminBrand {
   name: string;
   slug: string;
 }
+
+/** Payload accepted by POST/PATCH /products/variants/admin/ */
+export interface VariantPayload {
+  product: number | null;
+  color: number | null;
+  size: number | null;
+  sku: string;
+  price_override: string | null;
+  stock: number;
+  is_active: boolean;
+}
+
+/** A product image row from /products/images/admin/ */
+export interface AdminProductImage {
+  id: number;
+  product: number;
+  product_name: string;
+  image: string;
+  image_url: string | null;
+  image_type: "cover" | "hover" | "gallery";
+  display_order: number;
+  created_at: string;
+}
+
+export const IMAGE_TYPES = [
+  "cover",
+  "hover",
+  "gallery",
+] as const;
+
+/** Brand row from /products/brands/manage/ */
+export interface AdminBrandDetail {
+  id: number;
+  name: string;
+  slug: string;
+  logo: string | null;
+  logo_url: string | null;
+  description: string | null;
+  is_active: boolean;
+  product_count: number;
+}

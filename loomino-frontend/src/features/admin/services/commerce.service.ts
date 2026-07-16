@@ -5,6 +5,7 @@ import type {
   AdminProductDetail,
   ProductPayload,
   AdminBrand,
+  VariantPayload,
   AdminVariant,
   AdminReview,
   AdminOrder,
@@ -72,6 +73,27 @@ export async function listVariants(): Promise<AdminVariant[]> {
   const res = await api.get("/products/variants/admin/");
   return unwrap<AdminVariant>(res.data);
 }
+export async function createVariant(
+  payload: VariantPayload,
+): Promise<AdminVariant> {
+  const res = await api.post(
+    "/products/variants/admin/",
+    payload,
+  );
+  return res.data;
+}
+
+export async function updateVariant(
+  id: number,
+  payload: Partial<VariantPayload>,
+): Promise<AdminVariant> {
+  const res = await api.patch(
+    `/products/variants/admin/${id}/`,
+    payload,
+  );
+  return res.data;
+}
+
 export async function deleteVariant(id: number): Promise<void> {
   await api.delete(`/products/variants/admin/${id}/`);
 }

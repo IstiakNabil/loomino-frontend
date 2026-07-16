@@ -35,6 +35,7 @@ export const ADMIN_NAV: AdminNavSection[] = [
         children: [
           { label: "All Products", to: "/admin/products" },
           { label: "Categories", to: "/admin/categories" },
+          { label: "Brands", to: "/admin/brands" },
           { label: "Colors", to: "/admin/colors" },
           { label: "Sizes", to: "/admin/sizes" },
           {
