@@ -10,8 +10,8 @@ import {
   login,
   getProfile,
 } from "@/features/auth/services/auth.service";
-import { loginSuccess } from "@/features/auth/store/authSlice";
-import { authStorage } from "@/features/auth/utils/authStorage";
+import { adminLoginSuccess } from "../store/adminAuthSlice";
+import { adminStorage } from "../utils/adminStorage";
 
 function AdminLogin() {
   const dispatch = useDispatch<AppDispatch>();
@@ -32,13 +32,13 @@ function AdminLogin() {
 
       // Store the session FIRST so the token is attached to
       // the profile request below.
-      authStorage.setSession(res.access, res.refresh, res.user);
+      adminStorage.setSession(res.access, res.refresh, res.user);
 
       let user = res.user;
       try {
         const profile = await getProfile();
         user = { ...res.user, ...profile };
-        authStorage.setUser(user);
+        adminStorage.setUser(user);
       } catch {
         // fall back to login user
       }
@@ -47,14 +47,14 @@ function AdminLogin() {
         user.is_staff === true || user.is_superuser === true;
 
       if (!isAdmin) {
-        authStorage.clear();
+        adminStorage.clear();
         toast.error("This account doesn't have admin access.");
         setSubmitting(false);
         return;
       }
 
       dispatch(
-        loginSuccess({
+        adminLoginSuccess({
           user,
           accessToken: res.access,
           refreshToken: res.refresh,

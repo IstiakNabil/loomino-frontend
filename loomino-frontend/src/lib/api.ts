@@ -3,6 +3,10 @@ import type { InternalAxiosRequestConfig } from "axios";
 
 import { getNewAccessToken } from "@/features/auth/services/token.service";
 import { authStorage } from "@/features/auth/utils/authStorage";
+import {
+  adminStorage,
+  isAdminContext,
+} from "@/features/admin/utils/adminStorage";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000/api",
@@ -43,7 +47,12 @@ api.interceptors.request.use((config) => {
     return config;
   }
 
-  const token = authStorage.getAccessToken();
+  // Admin pages use their own session, kept separate from
+  // the shopper session, so the two never bleed into
+  // each other.
+  const token = isAdminContext()
+    ? adminStorage.getAccessToken()
+    : authStorage.getAccessToken();
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -91,8 +100,13 @@ api.interceptors.response.use(
 
         return api(originalRequest);
       } catch {
-        authStorage.clear();
-        window.location.href = "/login";
+        if (isAdminContext()) {
+          adminStorage.clear();
+          window.location.href = "/admin/login";
+        } else {
+          authStorage.clear();
+          window.location.href = "/login";
+        }
       }
     }
 

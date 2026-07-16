@@ -1,7 +1,7 @@
 import { Bell } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useAdminAuth } from "../hooks/useAdminAuth";
 
 const TITLES: Record<string, string> = {
   "/admin": "Dashboard",
@@ -21,7 +21,7 @@ const TITLES: Record<string, string> = {
 
 function AdminTopbar() {
   const location = useLocation();
-  const { user } = useAuth();
+  const { user } = useAdminAuth();
 
   const crumb =
     Object.entries(TITLES)

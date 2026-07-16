@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useAdminAuth } from "../hooks/useAdminAuth";
 import { getProfile } from "@/features/auth/services/auth.service";
-import { setUser } from "@/features/auth/store/authSlice";
+import { setAdminUser } from "../store/adminAuthSlice";
 import type { AppDispatch } from "@/app/store/store";
 
 /**
@@ -17,7 +17,7 @@ import type { AppDispatch } from "@/app/store/store";
  * so a direct visit or refresh on /admin works.
  */
 function AdminRoute() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user } = useAdminAuth();
   const dispatch = useDispatch<AppDispatch>();
 
   const hasFlag =
@@ -35,7 +35,7 @@ function AdminRoute() {
       getProfile()
         .then((profile) => {
           if (!active) return;
-          dispatch(setUser({ ...user, ...profile }));
+          dispatch(setAdminUser({ ...user, ...profile }));
         })
         .catch(() => {})
         .finally(() => {

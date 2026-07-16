@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 import { formatPrice, formatDate } from "@/lib/utils";
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useAdminAuth } from "../hooks/useAdminAuth";
 import StatCard from "../components/StatCard";
 import StatusBadge from "../components/StatusBadge";
 import {
@@ -19,7 +19,7 @@ import {
 } from "../hooks/useDashboard";
 
 function AdminDashboard() {
-  const { user } = useAuth();
+  const { user } = useAdminAuth();
   const { data: stats, isLoading: statsLoading } =
     useDashboardStats();
   const { data: orders, isLoading: ordersLoading } =

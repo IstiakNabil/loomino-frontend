@@ -1,5 +1,9 @@
 import { refreshToken } from "./auth.service";
 import { authStorage } from "../utils/authStorage";
+import {
+  adminStorage,
+  isAdminContext,
+} from "@/features/admin/utils/adminStorage";
 
 /**
  * Exchanges the stored refresh token for a new access
@@ -9,9 +13,16 @@ import { authStorage } from "../utils/authStorage";
  * BLACKLIST_AFTER_ROTATION, so every refresh response
  * also contains a NEW refresh token that must be stored
  * (the old one is blacklisted immediately).
+ *
+ * Admin and storefront sessions are stored separately, so
+ * refresh reads/writes whichever session is in play.
  */
 export async function getNewAccessToken(): Promise<string> {
-  const refresh = authStorage.getRefreshToken();
+  const admin = isAdminContext();
+
+  const refresh = admin
+    ? adminStorage.getRefreshToken()
+    : authStorage.getRefreshToken();
 
   if (!refresh) {
     throw new Error("No refresh token");
@@ -19,10 +30,19 @@ export async function getNewAccessToken(): Promise<string> {
 
   const response = await refreshToken({ refresh });
 
-  authStorage.setAccessToken(response.access);
-
-  if (response.refresh) {
-    authStorage.setRefreshToken(response.refresh);
+  if (admin) {
+    adminStorage.setAccessToken(response.access);
+    if (response.refresh) {
+      localStorage.setItem(
+        "admin_refreshToken",
+        response.refresh,
+      );
+    }
+  } else {
+    authStorage.setAccessToken(response.access);
+    if (response.refresh) {
+      authStorage.setRefreshToken(response.refresh);
+    }
   }
 
   return response.access;

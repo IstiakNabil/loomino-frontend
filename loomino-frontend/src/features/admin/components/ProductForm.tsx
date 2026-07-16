@@ -6,6 +6,7 @@ import { listBrands } from "../services/commerce.service";
 import AdminButton from "./AdminButton";
 import SectionToggle from "./SectionToggle";
 import ProductImageManager from "./ProductImageManager";
+import ProductVariantManager from "./ProductVariantManager";
 import type {
   AdminProductDetail,
   ProductPayload,
@@ -267,6 +268,30 @@ function ProductForm({
         </label>
       </div>
 
+      {/* Sizes & colours (variants) */}
+      <div className="mt-6">
+        <p className="mb-1 text-[14px] font-bold text-[#2C2418]">
+          Sizes &amp; Colours
+        </p>
+        {initial ? (
+          <>
+            <p className="mb-3 text-[12px] text-[#8A7C64]">
+              Each row is a colour + size with its own stock.
+              A product needs at least one to be purchasable.
+            </p>
+            <ProductVariantManager
+              productId={initial.id}
+              productName={initial.name}
+            />
+          </>
+        ) : (
+          <p className="rounded-lg bg-[#FBF3D9] px-3 py-2 text-[12px] leading-[1.6] text-[#8A6D1E]">
+            Save the product first — you'll then be able to
+            add its sizes and colours here.
+          </p>
+        )}
+      </div>
+
       {/* Images */}
       <div className="mt-6">
         <p className="mb-1 text-[14px] font-bold text-[#2C2418]">
@@ -341,9 +366,8 @@ function ProductForm({
 
       {!initial && (
         <p className="mt-3 text-[12px] leading-[1.6] text-[#A89A80]">
-          After saving you can upload images here. Add its
-          variants (colour / size / stock) from Variant
-          Products so it can be purchased.
+          After saving, you can add sizes/colours and upload
+          images right here.
         </p>
       )}
     </div>

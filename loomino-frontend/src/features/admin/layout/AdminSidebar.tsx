@@ -12,8 +12,12 @@ import {
   LogOut,
 } from "lucide-react";
 
-import { useAuth } from "@/features/auth/hooks/useAuth";
-import { useLogout } from "@/features/auth/hooks/useLogout";
+import { useDispatch } from "react-redux";
+
+import type { AppDispatch } from "@/app/store/store";
+import { useAdminAuth } from "../hooks/useAdminAuth";
+import { adminLogout } from "../store/adminAuthSlice";
+import { adminStorage } from "../utils/adminStorage";
 import { ADMIN_NAV } from "./adminNav";
 
 const ICONS: Record<
@@ -32,11 +36,14 @@ const ICONS: Record<
 function AdminSidebar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const { logout } = useLogout();
+  const { user } = useAdminAuth();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleLogout = async () => {
-    await logout();
+  // Clears ONLY the admin session — any storefront session
+  // stays untouched.
+  const handleLogout = () => {
+    adminStorage.clear();
+    dispatch(adminLogout());
     navigate("/admin/login", { replace: true });
   };
   const [openGroups, setOpenGroups] = useState<
@@ -161,7 +168,7 @@ function AdminSidebar() {
         </div>
         <button
           type="button"
-          onClick={() => void handleLogout()}
+          onClick={handleLogout}
           className="mt-3 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-[13px] text-[#9A3B3B] hover:bg-[#F7ECEC]"
         >
           <LogOut size={16} /> Log Out

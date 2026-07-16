@@ -69,6 +69,15 @@ export async function toggleProductActive(
 }
 
 /* Variants */
+export async function listVariantsForProduct(
+  productId: number,
+): Promise<AdminVariant[]> {
+  const res = await api.get("/products/variants/admin/", {
+    params: { product: productId },
+  });
+  return unwrap<AdminVariant>(res.data);
+}
+
 export async function listVariants(): Promise<AdminVariant[]> {
   const res = await api.get("/products/variants/admin/");
   return unwrap<AdminVariant>(res.data);
