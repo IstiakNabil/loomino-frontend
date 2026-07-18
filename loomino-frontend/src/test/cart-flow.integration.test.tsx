@@ -98,7 +98,7 @@ describe("Cart flow (integration)", () => {
 
     // Item price formatting (DRF string -> $160.00)
     expect(
-      screen.getAllByText("$160.00").length,
+      screen.getAllByText("৳160.00").length,
     ).toBeGreaterThan(0);
 
     // Summary: subtotal count and total
@@ -107,7 +107,7 @@ describe("Cart flow (integration)", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getAllByText("$550.00"),
+      screen.getAllByText("৳550.00"),
     ).toHaveLength(2); // subtotal + total rows
 
     expect(

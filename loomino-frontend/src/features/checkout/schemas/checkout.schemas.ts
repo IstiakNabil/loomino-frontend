@@ -6,7 +6,6 @@ import { z } from "zod";
  * - first_name + last_name  -> full_name
  * - city                    -> district
  * - state/region            -> division
- * - area                    -> area
  */
 export const shippingInfoSchema = z.object({
   first_name: z.string().min(1, "First name is required"),
@@ -17,7 +16,6 @@ export const shippingInfoSchema = z.object({
   country: z.string().min(1, "Country is required"),
   division: z.string().min(1, "State / region is required"),
   district: z.string().min(1, "City is required"),
-  area: z.string().min(1, "Area is required"),
   postal_code: z.string().min(1, "Postal code is required"),
   address_line: z
     .string()

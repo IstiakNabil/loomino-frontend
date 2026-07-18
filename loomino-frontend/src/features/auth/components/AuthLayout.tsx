@@ -10,7 +10,7 @@ function AuthLayout({
   children,
 }: AuthLayoutProps) {
   return (
-    <div className="mx-auto max-w-[1440px] px-[108px] py-[40px]">
+    <div className="mx-auto max-w-[1920px] px-[108px] py-[40px]">
       <div className="flex items-center justify-between gap-[108px]">
         {/* Left Side */}
         <div className="h-[726px] w-[600px]">

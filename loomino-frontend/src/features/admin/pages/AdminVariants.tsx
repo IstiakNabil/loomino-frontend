@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Layers, Trash2, Plus } from "lucide-react";
+import { Layers, Trash2, Pencil, Plus } from "lucide-react";
 import { toast } from "sonner";
 
 import { formatPrice, getMediaUrl } from "@/lib/utils";
@@ -13,6 +13,7 @@ import {
   listVariants,
   deleteVariant,
   createVariant,
+  updateVariant,
 } from "../services/commerce.service";
 import type {
   AdminVariant,
@@ -27,6 +28,8 @@ function AdminVariants() {
   });
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [editingVariant, setEditingVariant] =
+    useState<AdminVariant | null>(null);
 
   const create = useMutation({
     mutationFn: (payload: VariantPayload) =>
@@ -44,6 +47,25 @@ function AdminVariants() {
     onError: (e) =>
       toast.error(
         getApiErrorMessage(e, "Couldn't add variant."),
+      ),
+  });
+
+  const update = useMutation({
+    mutationFn: (payload: Partial<VariantPayload>) =>
+      updateVariant(editingVariant!.id, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["admin", "variants"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["admin", "products"],
+      });
+      toast.success("Variant updated.");
+      setEditingVariant(null);
+    },
+    onError: (e) =>
+      toast.error(
+        getApiErrorMessage(e, "Couldn't update variant."),
       ),
   });
 
@@ -82,8 +104,25 @@ function AdminVariants() {
         <VariantForm
           submitting={create.isPending}
           onCancel={() => setModalOpen(false)}
-          onSubmit={(payload) => create.mutate(payload)}
+          onSubmit={(payload) =>
+            create.mutate(payload as VariantPayload)
+          }
         />
+      </AdminModal>
+
+      <AdminModal
+        open={editingVariant !== null}
+        title="Edit Variant"
+        onClose={() => setEditingVariant(null)}
+      >
+        {editingVariant && (
+          <VariantForm
+            initial={editingVariant}
+            submitting={update.isPending}
+            onCancel={() => setEditingVariant(null)}
+            onSubmit={(payload) => update.mutate(payload)}
+          />
+        )}
       </AdminModal>
 
       {isLoading && (
@@ -144,12 +183,21 @@ function AdminVariants() {
 
               <button
                 type="button"
+                aria-label="Edit variant"
+                onClick={() => setEditingVariant(v)}
+                className="ml-4 rounded-md p-2 text-[#6B5E48] hover:bg-[#F7F0E5]"
+              >
+                <Pencil size={16} />
+              </button>
+
+              <button
+                type="button"
                 aria-label="Delete variant"
                 onClick={() => {
                   if (confirm("Delete this variant?"))
                     del.mutate(v.id);
                 }}
-                className="ml-4 rounded-md p-2 text-[#9A3B3B] hover:bg-[#F7ECEC]"
+                className="rounded-md p-2 text-[#9A3B3B] hover:bg-[#F7ECEC]"
               >
                 <Trash2 size={16} />
               </button>

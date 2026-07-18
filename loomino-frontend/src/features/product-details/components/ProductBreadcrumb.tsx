@@ -10,7 +10,7 @@ function ProductBreadcrumb({
   return (
     <nav
       aria-label="Breadcrumb"
-      className="mx-auto flex h-10 max-w-[1440px] items-center px-[108px] pt-[32px] text-[18px]"
+      className="mx-auto flex h-10 max-w-[1920px] items-center px-[108px] pt-[32px] text-[18px]"
     >
       <span className="text-[#6B5B4B]">Home</span>
 

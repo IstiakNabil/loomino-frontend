@@ -57,7 +57,7 @@ function SearchOverlay({ open, onClose }: SearchOverlayProps) {
 
       {/* White search bar below the header */}
       <div className="absolute left-0 right-0 top-0 bg-white">
-        <div className="mx-auto flex h-[152px] max-w-[1440px] items-center px-6 md:px-[108px]">
+        <div className="mx-auto flex h-[152px] max-w-[1920px] items-center px-6 md:px-[108px]">
           <div className="flex w-full items-center gap-4 border-b border-[#ADADAD] pb-4">
             <Search size={24} className="text-[#ADADAD]" />
             <input

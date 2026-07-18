@@ -6,7 +6,7 @@ import OrderSummary from "@/features/cart/components/OrderSummary";
 function CartPage() {
   return (
     <div className="bg-[#F1E9DC]">
-      <div className="mx-auto max-w-[1440px] px-6 py-[64px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 py-[64px] md:px-[108px]">
         <CartHeader />
         <CartTableHeader />
         <CartList />

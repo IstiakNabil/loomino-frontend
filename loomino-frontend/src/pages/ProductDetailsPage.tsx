@@ -36,7 +36,7 @@ function ProductDetailsPage() {
 
   return (
     <div className="font-loomino bg-[#F0E6D8]">
-      <div className="mx-auto max-w-[1440px] px-6 pt-[32px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pt-[32px] md:px-[108px]">
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },
@@ -46,7 +46,7 @@ function ProductDetailsPage() {
         />
       </div>
 
-      <div className="mx-auto max-w-[1440px] px-6 pb-[96px] pt-[40px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pb-[96px] pt-[40px] md:px-[108px]">
         <div className="grid grid-cols-1 items-start gap-x-6 gap-y-10 lg:grid-cols-2">
           {/* Top Left: gallery */}
           <ProductGallery images={product.images} />

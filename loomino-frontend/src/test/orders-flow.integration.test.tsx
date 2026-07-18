@@ -82,7 +82,6 @@ const orderDetail: OrderDetail = {
     country: "USA",
     division: "New York",
     district: "New York",
-    area: "Kingston",
     postal_code: "12401",
     address_line: "132 Green Street",
     landmark: "",

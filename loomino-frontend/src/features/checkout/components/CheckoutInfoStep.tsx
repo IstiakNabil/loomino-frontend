@@ -4,11 +4,13 @@ import { Search, Smartphone } from "lucide-react";
 import { toast } from "sonner";
 
 import { getApiErrorMessage } from "@/lib/apiError";
+import { COUNTRY_OPTIONS } from "@/lib/constants";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useLogout } from "@/features/auth/hooks/useLogout";
 import { useCreateAddress } from "@/features/addresses/hooks/useCreateAddress";
 import type { Address } from "@/features/addresses/types/address";
 import CheckoutInput from "./CheckoutInput";
+import CheckoutSelect from "./CheckoutSelect";
 import {
   shippingInfoSchema,
   type ShippingInfoValues,
@@ -31,7 +33,7 @@ function CheckoutInfoStep({
     formState: { errors },
   } = useForm<ShippingInfoValues>({
     resolver: zodResolver(shippingInfoSchema),
-    defaultValues: { country: "" },
+    defaultValues: { country: COUNTRY_OPTIONS[0] },
   });
 
   const onSubmit = async (values: ShippingInfoValues) => {
@@ -43,7 +45,6 @@ function CheckoutInfoStep({
         country: values.country,
         division: values.division,
         district: values.district,
-        area: values.area,
         postal_code: values.postal_code,
         address_line: values.address_line,
         landmark: values.landmark || "",
@@ -94,9 +95,8 @@ function CheckoutInfoStep({
       </h2>
 
       <div className="mt-5 space-y-4">
-        <CheckoutInput
-          placeholder="Country / Region"
-          autoComplete="country-name"
+        <CheckoutSelect
+          options={COUNTRY_OPTIONS}
           error={errors.country?.message}
           {...register("country")}
         />
@@ -128,12 +128,6 @@ function CheckoutInfoStep({
           icon={<Search size={18} />}
           error={errors.address_line?.message}
           {...register("address_line")}
-        />
-
-        <CheckoutInput
-          placeholder="Area / Neighbourhood"
-          error={errors.area?.message}
-          {...register("area")}
         />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

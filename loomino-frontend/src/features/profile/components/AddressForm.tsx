@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import ProfileField from "./ProfileField";
+import ProfileSelect from "./ProfileSelect";
+import { COUNTRY_OPTIONS } from "@/lib/constants";
 import type { Address } from "@/features/addresses/types/address";
 import {
   addressSchema,
@@ -30,10 +32,9 @@ function AddressForm({
     defaultValues: {
       full_name: initial?.full_name ?? "",
       phone_number: initial?.phone_number ?? "",
-      country: initial?.country ?? "",
+      country: initial?.country ?? COUNTRY_OPTIONS[0],
       division: initial?.division ?? "",
       district: initial?.district ?? "",
-      area: initial?.area ?? "",
       postal_code: initial?.postal_code ?? "",
       address_line: initial?.address_line ?? "",
       landmark: initial?.landmark ?? "",
@@ -70,18 +71,11 @@ function AddressForm({
           {...register("address_line")}
         />
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <ProfileField
-            label="Area / Neighbourhood"
-            error={errors.area?.message}
-            {...register("area")}
-          />
-          <ProfileField
-            label="City"
-            error={errors.district?.message}
-            {...register("district")}
-          />
-        </div>
+        <ProfileField
+          label="City"
+          error={errors.district?.message}
+          {...register("district")}
+        />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <ProfileField
@@ -97,8 +91,9 @@ function AddressForm({
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <ProfileField
+          <ProfileSelect
             label="Country"
+            options={COUNTRY_OPTIONS}
             error={errors.country?.message}
             {...register("country")}
           />

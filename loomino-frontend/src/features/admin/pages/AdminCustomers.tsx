@@ -42,6 +42,22 @@ function AdminCustomers() {
       ),
     },
     {
+      header: "Phone",
+      cell: (c) => (
+        <span className="text-[#6B5E48]">
+          {c.phone_number || "—"}
+        </span>
+      ),
+    },
+    {
+      header: "Location",
+      cell: (c) => (
+        <span className="text-[#8A7C64]">
+          {c.location || "—"}
+        </span>
+      ),
+    },
+    {
       header: "Joined",
       cell: (c) => (
         <span className="text-[#8A7C64]">

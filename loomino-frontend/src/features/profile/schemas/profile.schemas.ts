@@ -22,7 +22,6 @@ export const addressSchema = z.object({
   country: z.string().min(1, "Country is required"),
   division: z.string().min(1, "State / region is required"),
   district: z.string().min(1, "City is required"),
-  area: z.string().min(1, "Area is required"),
   postal_code: z.string().min(1, "Postal code is required"),
   address_line: z
     .string()

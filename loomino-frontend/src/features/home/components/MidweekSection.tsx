@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-import sundayImage from "@/assets/images/midweek/sunday.png";
-import mondayImage from "@/assets/images/midweek/monday.png";
-import tuesdayImage from "@/assets/images/midweek/tuesday.png";
-import wednesdayImage from "@/assets/images/midweek/wednesday.png";
-import thursdayImage from "@/assets/images/midweek/thursday.png";
+import sundayImage from "@/assets/images/midweek/sunday.jpg";
+import mondayImage from "@/assets/images/midweek/monday.jpg";
+import tuesdayImage from "@/assets/images/midweek/tuesday.jpg";
+import wednesdayImage from "@/assets/images/midweek/wednesday.jpg";
+import thursdayImage from "@/assets/images/midweek/thursday.jpg";
 
 import MidweekCard from "./MidweekCard";
 
@@ -34,7 +34,7 @@ const midweekItems = [
 function MidweekSection() {
   return (
     <section className="w-full bg-[#F7F0E5] py-20">
-      <div className="mx-auto w-full max-w-[1440px] px-[108px]">
+      <div className="mx-auto w-full max-w-[1920px] px-[108px]">
       <div className="mb-10 flex items-center justify-between">
         <h2 className="text-[32px] font-semibold text-[#1E1E1E]">
           Modiweek

@@ -12,7 +12,7 @@ function SustainabilityPage() {
   return (
     <div className="font-loomino bg-[#F0E6D8]">
       {/* Breadcrumb */}
-      <div className="mx-auto max-w-[1440px] px-6 pt-[32px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pt-[32px] md:px-[108px]">
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },

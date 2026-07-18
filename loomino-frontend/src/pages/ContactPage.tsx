@@ -7,7 +7,7 @@ import ContactCard from "@/features/contact/components/ContactCard";
 function ContactPage() {
   return (
     <div className="font-loomino min-h-[calc(100vh-110px)] bg-[#F0E6D8]">
-      <div className="mx-auto max-w-[1440px] px-6 pt-[32px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pt-[32px] md:px-[108px]">
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },

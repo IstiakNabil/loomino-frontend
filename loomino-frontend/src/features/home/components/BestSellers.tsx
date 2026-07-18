@@ -1,24 +1,11 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "@/services/product.service";
-import type { Product } from "@/types/product";
+import { Link } from "react-router-dom";
+import { useBestSellers } from "@/features/product-details/hooks/useBestSellers";
 import ProductCard from "../../../components/product/ProductCard";
 import Container from "@/components/layout/Container";
 
 function BestSellers() {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const response = await getProducts();
-        setProducts(response.results);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchProducts();
-  }, []);
+  const { data } = useBestSellers();
+  const products = data?.slice(0, 3) ?? [];
 
   return (
     <section className="py-16">
@@ -28,13 +15,16 @@ function BestSellers() {
         Best Sellers
       </h2>
 
-      <button className="text-sm text-[#1E1E1E] hover:underline">
+      <Link
+        to="/best-sellers"
+        className="text-sm text-[#1E1E1E] hover:underline"
+      >
         View All
-      </button>
+      </Link>
     </div>
 
     <div className="grid grid-cols-3 gap-6">
-      {products.slice(0, 3).map((product) => (
+      {products.map((product) => (
         <ProductCard
           key={product.id}
           product={product}

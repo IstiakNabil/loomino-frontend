@@ -67,7 +67,6 @@ const createdAddress: Address = {
   country: "USA",
   division: "New York",
   district: "New York",
-  area: "Kingston",
   postal_code: "12401",
   address_line: "132 Green Street",
   landmark: "",
@@ -141,10 +140,6 @@ describe("Checkout flow (integration)", () => {
 
     // Fill the address form
     await user.type(
-      screen.getByPlaceholderText("Country / Region"),
-      "USA",
-    );
-    await user.type(
       screen.getByPlaceholderText("First Name"),
       "Nina",
     );
@@ -155,10 +150,6 @@ describe("Checkout flow (integration)", () => {
     await user.type(
       screen.getByPlaceholderText("Street Address"),
       "132 Green Street",
-    );
-    await user.type(
-      screen.getByPlaceholderText("Area / Neighbourhood"),
-      "Kingston",
     );
     await user.type(
       screen.getByPlaceholderText("Postal Code"),
@@ -245,10 +236,6 @@ describe("Checkout flow (integration)", () => {
     await screen.findByText("Shipping Address");
 
     await user.type(
-      screen.getByPlaceholderText("Country / Region"),
-      "USA",
-    );
-    await user.type(
       screen.getByPlaceholderText("First Name"),
       "Nina",
     );
@@ -259,10 +246,6 @@ describe("Checkout flow (integration)", () => {
     await user.type(
       screen.getByPlaceholderText("Street Address"),
       "132 Green Street",
-    );
-    await user.type(
-      screen.getByPlaceholderText("Area / Neighbourhood"),
-      "Kingston",
     );
     await user.type(
       screen.getByPlaceholderText("Postal Code"),

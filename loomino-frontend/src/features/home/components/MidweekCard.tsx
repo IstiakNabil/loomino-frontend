@@ -10,8 +10,11 @@ function MidweekCard({
   image,
 }: MidweekCardProps) {
   return (
-    <article className="w-[288px]">
-      <div className="relative h-[426px] w-full overflow-hidden">
+    <article className="w-full min-w-0 flex-1">
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ aspectRatio: "288 / 426" }}
+      >
         <img
           src={image}
           alt={day}

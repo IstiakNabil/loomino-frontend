@@ -5,7 +5,6 @@ export interface Address {
   country: string;
   division: string;
   district: string;
-  area: string;
   postal_code: string;
   address_line: string;
   landmark: string;
@@ -20,7 +19,6 @@ export interface AddressInput {
   country: string;
   division: string;
   district: string;
-  area: string;
   postal_code: string;
   address_line: string;
   landmark?: string;

@@ -39,6 +39,8 @@ function AdminCoupons() {
   const [type, setType] = useState("percent");
   const [value, setValue] = useState("");
   const [minValue, setMinValue] = useState("");
+  const [validFrom, setValidFrom] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
 
   const create = useMutation({
     mutationFn: createCoupon,
@@ -80,12 +82,16 @@ function AdminCoupons() {
       toast.error(getApiErrorMessage(e, "Couldn't toggle.")),
   });
 
+  const todayDate = () => new Date().toISOString().slice(0, 10);
+
   const openCreate = () => {
     setEditing(null);
     setCode("");
     setType("percent");
     setValue("");
     setMinValue("");
+    setValidFrom(todayDate());
+    setExpiryDate("");
     setModalOpen(true);
   };
   const openEdit = (c: AdminCoupon) => {
@@ -94,14 +100,28 @@ function AdminCoupons() {
     setType(c.type);
     setValue(c.value);
     setMinValue(c.cart_min_value ?? "");
+    setValidFrom(c.valid_from ? c.valid_from.slice(0, 10) : todayDate());
+    setExpiryDate(c.expiry_date ? c.expiry_date.slice(0, 10) : "");
     setModalOpen(true);
   };
   const submit = () => {
-    const payload = {
+    if (!validFrom || !expiryDate) {
+      toast.error("Set both a valid-from and expiry date.");
+      return;
+    }
+    // The backend's cart_min_value field is optional but doesn't
+    // accept an explicit null — omit the key entirely when left
+    // blank rather than sending `cart_min_value: null`.
+    const payload: Partial<AdminCoupon> = {
       code,
       type,
       value,
-      cart_min_value: minValue || null,
+      ...(minValue ? { cart_min_value: minValue } : {}),
+      // Valid from the start of that day...
+      valid_from: new Date(`${validFrom}T00:00:00`).toISOString(),
+      // ...through the end of the expiry day, so "expires on
+      // this date" reads as inclusive rather than at midnight.
+      expiry_date: new Date(`${expiryDate}T23:59:59`).toISOString(),
     };
     if (editing)
       update.mutate({ id: editing.id, payload });
@@ -246,6 +266,20 @@ function AdminCoupons() {
           value={minValue}
           onChange={(e) => setMinValue(e.target.value)}
         />
+        <div className="grid grid-cols-2 gap-3">
+          <AdminField
+            label="Valid From"
+            type="date"
+            value={validFrom}
+            onChange={(e) => setValidFrom(e.target.value)}
+          />
+          <AdminField
+            label="Expires On"
+            type="date"
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
+          />
+        </div>
         <div className="mt-6 flex justify-end gap-3">
           <AdminButton
             variant="outline"

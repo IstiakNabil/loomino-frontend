@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 interface CollectionTileProps {
   title: string;
   image: string;
+  /**
+   * The tile's height at the original 600px-wide Figma design —
+   * used to compute an aspect-ratio so the tile keeps the same
+   * proportions when it scales fluidly to a different width.
+   */
   height: number;
   /** Destination link (e.g. /shop?category=kurti). */
   to: string;
@@ -29,7 +34,7 @@ function CollectionTile({
     <Link
       to={to}
       className="group relative block w-full overflow-hidden"
-      style={{ height }}
+      style={{ aspectRatio: `600 / ${height}` }}
       aria-label={`Shop ${title}`}
     >
       <img

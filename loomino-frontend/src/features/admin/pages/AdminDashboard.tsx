@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import {
   DollarSign,
   TrendingUp,
@@ -7,12 +8,15 @@ import {
   Package,
   Users,
   Layers,
+  CalendarClock,
+  LayoutGrid,
 } from "lucide-react";
 
-import { formatPrice, formatDate } from "@/lib/utils";
+import { formatPrice, formatDate, getMediaUrl } from "@/lib/utils";
 import { useAdminAuth } from "../hooks/useAdminAuth";
 import StatCard from "../components/StatCard";
 import StatusBadge from "../components/StatusBadge";
+import { listCategories } from "../services/catalog.service";
 import {
   useDashboardStats,
   useDashboardOrders,
@@ -24,6 +28,13 @@ function AdminDashboard() {
     useDashboardStats();
   const { data: orders, isLoading: ordersLoading } =
     useDashboardOrders();
+  const {
+    data: categories,
+    isLoading: categoriesLoading,
+  } = useQuery({
+    queryKey: ["admin", "categories"],
+    queryFn: listCategories,
+  });
 
   const recentOrders = (orders ?? []).slice(0, 5);
 
@@ -56,6 +67,23 @@ function AdminDashboard() {
             statsLoading
               ? "…"
               : formatPrice(stats?.total_sales ?? 0)
+          }
+        />
+        <StatCard
+          label="Today's Sales"
+          hint={
+            statsLoading
+              ? undefined
+              : `${stats?.today_orders ?? 0} order${
+                  stats?.today_orders === 1 ? "" : "s"
+                } today`
+          }
+          accent="#3F9E7A"
+          icon={<CalendarClock size={20} />}
+          value={
+            statsLoading
+              ? "…"
+              : formatPrice(stats?.today_sales ?? 0)
           }
         />
         <StatCard
@@ -223,6 +251,73 @@ function AdminDashboard() {
               ))}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* Categories */}
+      <div className="mt-6 rounded-2xl border border-[#EFE9DE] bg-white">
+        <div className="flex items-center justify-between border-b border-[#EFE9DE] px-6 py-4">
+          <div className="flex items-center gap-2">
+            <LayoutGrid size={18} className="text-[#A88548]" />
+            <div>
+              <p className="text-[15px] font-semibold text-[#2C2418]">
+                Categories
+              </p>
+              <p className="text-[12px] text-[#A89A80]">
+                {(categories ?? []).length} categories
+              </p>
+            </div>
+          </div>
+          <Link
+            to="/admin/categories"
+            className="rounded-lg border border-[#E4DACA] px-3 py-1.5 text-[13px] text-[#6B5E48] hover:bg-[#F7F0E5]"
+          >
+            Manage →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 p-6 sm:grid-cols-3 xl:grid-cols-5">
+          {categoriesLoading && (
+            <p className="col-span-full py-4 text-center text-[14px] text-[#A89A80]">
+              Loading categories…
+            </p>
+          )}
+
+          {!categoriesLoading &&
+            (categories ?? []).length === 0 && (
+              <p className="col-span-full py-4 text-center text-[14px] text-[#A89A80]">
+                No categories yet.
+              </p>
+            )}
+
+          {(categories ?? []).map((cat) => (
+            <Link
+              key={cat.id}
+              to={`/admin/categories`}
+              className="flex items-center gap-3 rounded-xl border border-[#F1ECE2] p-3 transition hover:border-[#DDD3C0] hover:bg-[#FBF8F2]"
+            >
+              {cat.icon_image ? (
+                <img
+                  src={getMediaUrl(cat.icon_image) ?? ""}
+                  alt={cat.name}
+                  className="h-10 w-10 shrink-0 rounded-lg object-cover"
+                />
+              ) : (
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#F0E9DA] text-[13px] font-semibold text-[#A88548]">
+                  {cat.name[0]}
+                </span>
+              )}
+              <div className="min-w-0">
+                <p className="truncate text-[13px] font-medium text-[#2C2418]">
+                  {cat.name}
+                </p>
+                <p className="text-[12px] text-[#A89A80]">
+                  {cat.product_count} product
+                  {cat.product_count === 1 ? "" : "s"}
+                </p>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

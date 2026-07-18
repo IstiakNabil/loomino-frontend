@@ -57,7 +57,6 @@ const address: Address = {
   country: "USA",
   division: "New York",
   district: "New York",
-  area: "Kingston",
   postal_code: "12401",
   address_line: "132 Green Street",
   landmark: "",
@@ -225,10 +224,6 @@ describe("Profile flow (integration)", () => {
       "132 Green Street",
     );
     await user.type(
-      screen.getByLabelText("Area / Neighbourhood"),
-      "Kingston",
-    );
-    await user.type(
       screen.getByLabelText("City"),
       "New York",
     );
@@ -239,10 +234,6 @@ describe("Profile flow (integration)", () => {
     await user.type(
       screen.getByLabelText("Postal Code"),
       "12401",
-    );
-    await user.type(
-      screen.getByLabelText("Country"),
-      "USA",
     );
 
     await user.click(

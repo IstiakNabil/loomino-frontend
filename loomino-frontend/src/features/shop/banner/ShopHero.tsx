@@ -1,8 +1,8 @@
-import shopHero from "@/assets/images/shop/shop-hero.png";
+import shopHero from "@/assets/images/shop/shop-hero.jpg";
 
 function ShopHero() {
   return (
-    <section className="mx-auto max-w-[1440px]">
+    <section className="mx-auto max-w-[1920px]">
       <img
         src={shopHero}
         alt="Shop Hero"

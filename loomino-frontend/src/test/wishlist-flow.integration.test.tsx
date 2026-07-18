@@ -96,7 +96,7 @@ describe("Wishlist flow (integration)", () => {
     ).toBeInTheDocument();
 
     expect(screen.getByText("1 item")).toBeInTheDocument();
-    expect(screen.getByText("$130.00")).toBeInTheDocument();
+    expect(screen.getByText("৳130.00")).toBeInTheDocument();
     expect(
       screen.getByText(/Size: S/),
     ).toBeInTheDocument();

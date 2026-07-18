@@ -9,7 +9,7 @@ function BestSellersPage() {
 
   return (
     <div className="font-loomino min-h-[calc(100vh-110px)] bg-[#F0E6D8]">
-      <div className="mx-auto max-w-[1440px] px-6 pt-[32px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pt-[32px] md:px-[108px]">
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },
@@ -18,7 +18,7 @@ function BestSellersPage() {
         />
       </div>
 
-      <div className="mx-auto max-w-[1440px] px-6 pb-[80px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pb-[80px] md:px-[108px]">
         <h1 className="text-[32px] font-semibold capitalize leading-[1.4] text-[#0C0C0C]">
           Best Sellers
         </h1>

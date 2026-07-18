@@ -8,7 +8,7 @@ function Container({
   className = "",
 }: ContainerProps) {
   return (
-    <div className={`mx-auto w-full max-w-[1440px] px-[108px] ${className}`}>
+    <div className={`mx-auto w-full max-w-[1920px] px-[108px] ${className}`}>
       {children}
     </div>
   );

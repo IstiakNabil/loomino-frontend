@@ -63,6 +63,11 @@ export interface AdminCoupon {
   usage_limit: number | null;
   used_count: number;
   is_active: boolean;
+  status: string;
+  /** ISO datetime — when the coupon becomes valid. Required by the backend. */
+  valid_from: string;
+  /** ISO datetime — when the coupon expires. Required by the backend. */
+  expiry_date: string;
 }
 
 export interface AdminMail {

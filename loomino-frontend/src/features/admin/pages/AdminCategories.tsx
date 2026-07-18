@@ -15,6 +15,7 @@ import {
   createCategory,
   updateCategory,
   deleteCategory,
+  type CategoryPayload,
 } from "../services/catalog.service";
 import type { AdminCategory } from "../types/catalog";
 
@@ -24,7 +25,7 @@ function AdminCategories() {
     createMutation,
     updateMutation,
     deleteMutation,
-  } = useCrud<AdminCategory, Partial<AdminCategory>>(
+  } = useCrud<AdminCategory, CategoryPayload>(
     "categories",
     {
       list: listCategories,
@@ -41,12 +42,26 @@ function AdminCategories() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [order, setOrder] = useState("0");
+  const [bannerFile, setBannerFile] = useState<File | null>(
+    null,
+  );
+  const [iconFile, setIconFile] = useState<File | null>(null);
+  const [existingBanner, setExistingBanner] = useState<
+    string | null
+  >(null);
+  const [existingIcon, setExistingIcon] = useState<
+    string | null
+  >(null);
 
   const openCreate = () => {
     setEditing(null);
     setName("");
     setDescription("");
     setOrder("0");
+    setBannerFile(null);
+    setIconFile(null);
+    setExistingBanner(null);
+    setExistingIcon(null);
     setModalOpen(true);
   };
 
@@ -55,15 +70,21 @@ function AdminCategories() {
     setName(cat.name);
     setDescription(cat.description ?? "");
     setOrder(String(cat.display_order));
+    setBannerFile(null);
+    setIconFile(null);
+    setExistingBanner(cat.banner_image);
+    setExistingIcon(cat.icon_image);
     setModalOpen(true);
   };
 
   const submit = () => {
-    const payload = {
+    const payload: CategoryPayload = {
       name,
       description,
       display_order: Number(order) || 0,
       is_active: true,
+      ...(bannerFile ? { banner_image: bannerFile } : {}),
+      ...(iconFile ? { icon_image: iconFile } : {}),
     };
     if (editing) {
       updateMutation.mutate(
@@ -199,10 +220,57 @@ function AdminCategories() {
           onChange={(e) => setOrder(e.target.value)}
         />
 
-        <p className="mb-2 text-[12px] text-[#A89A80]">
-          Banner &amp; icon images can be uploaded from the
-          product admin; image upload UI is coming next.
-        </p>
+        <div className="mb-4 grid grid-cols-2 gap-4">
+          <label className="block">
+            <span className="mb-1.5 block text-[13px] font-medium text-[#3A2E1B]">
+              Icon Image
+            </span>
+            {(iconFile || existingIcon) && (
+              <img
+                src={
+                  iconFile
+                    ? URL.createObjectURL(iconFile)
+                    : (getMediaUrl(existingIcon) ?? "")
+                }
+                alt="Icon preview"
+                className="mb-2 h-16 w-16 rounded-md object-cover"
+              />
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) =>
+                setIconFile(e.target.files?.[0] ?? null)
+              }
+              className="block w-full text-[13px] text-[#6B5E48] file:mr-3 file:rounded-md file:border-0 file:bg-[#F0E9DA] file:px-3 file:py-2 file:text-[13px] file:text-[#6B5E48] hover:file:bg-[#E5DBC5]"
+            />
+          </label>
+
+          <label className="block">
+            <span className="mb-1.5 block text-[13px] font-medium text-[#3A2E1B]">
+              Banner Image
+            </span>
+            {(bannerFile || existingBanner) && (
+              <img
+                src={
+                  bannerFile
+                    ? URL.createObjectURL(bannerFile)
+                    : (getMediaUrl(existingBanner) ?? "")
+                }
+                alt="Banner preview"
+                className="mb-2 h-16 w-full rounded-md object-cover"
+              />
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) =>
+                setBannerFile(e.target.files?.[0] ?? null)
+              }
+              className="block w-full text-[13px] text-[#6B5E48] file:mr-3 file:rounded-md file:border-0 file:bg-[#F0E9DA] file:px-3 file:py-2 file:text-[13px] file:text-[#6B5E48] hover:file:bg-[#E5DBC5]"
+            />
+          </label>
+        </div>
 
         <div className="mt-4 flex justify-end gap-3">
           <AdminButton

@@ -1,4 +1,4 @@
-import sustainabilityImage from "@/assets/images/sustainability/sustainability.png";
+import sustainabilityImage from "@/assets/images/sustainability/sustainability.jpg";
 import Container from "@/components/layout/Container";
 import SustainabilityCard from "./SustainabilityCard";
 

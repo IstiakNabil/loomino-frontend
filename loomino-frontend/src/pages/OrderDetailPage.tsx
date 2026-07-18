@@ -111,9 +111,7 @@ function OrderDetailPage() {
                 {address.full_name}
               </p>
               <p>{address.address_line}</p>
-              <p>
-                {address.area}, {address.district}
-              </p>
+              <p>{address.district}</p>
               <p>
                 {address.division} {address.postal_code}
               </p>

@@ -5,6 +5,8 @@ export interface DashboardStats {
   pending_orders: number;
   completed_orders: number;
   total_sales: number;
+  today_sales: number;
+  today_orders: number;
 }
 
 export interface DashboardOrder {
@@ -40,5 +42,7 @@ export interface DashboardCustomer {
   first_name: string;
   last_name: string;
   email: string;
+  phone_number: string;
+  location: string | null;
   date_joined: string;
 }

@@ -1,8 +1,8 @@
-import community1 from "@/assets/images/community/community-1.png";
+import community1 from "@/assets/images/community/community-1.jpg";
 import community2 from "@/assets/images/community/community-2.png";
 import community3 from "@/assets/images/community/community-3.png";
-import community4 from "@/assets/images/community/community-4.png";
-import community5 from "@/assets/images/community/community-5.png";
+import community4 from "@/assets/images/community/community-4.jpg";
+import community5 from "@/assets/images/community/community-5.jpg";
 
 import Container from "@/components/layout/Container";
 import CommunityImage from "./CommunityImage";

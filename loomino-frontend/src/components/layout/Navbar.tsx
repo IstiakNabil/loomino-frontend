@@ -16,7 +16,7 @@ function Navbar() {
         open={searchOpen}
         onClose={() => setSearchOpen(false)}
       />
-      <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between px-[108px]">
+      <div className="mx-auto flex h-full max-w-[1920px] items-center justify-between px-[108px]">
         {/* Logo */}
         <Link to="/" aria-label="Loomino home">
           <img

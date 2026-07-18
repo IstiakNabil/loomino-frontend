@@ -12,6 +12,12 @@ export interface Product {
   default_variant_id: number | null;
   average_rating: number;
   review_count: number;
+  /**
+   * Not yet returned by the list endpoints — the backend's
+   * ProductListSerializer doesn't include variant colors. Once
+   * it does, ProductCard will render swatches automatically.
+   */
+  colors?: { id: number; name: string; hex_code: string }[];
 }
 
 export interface ProductImage {

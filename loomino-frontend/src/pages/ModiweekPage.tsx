@@ -10,7 +10,7 @@ function ModiweekPage() {
 
   return (
     <div className="font-loomino min-h-[calc(100vh-110px)] bg-[#F0E6D8]">
-      <div className="mx-auto max-w-[1440px] px-6 pt-[32px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pt-[32px] md:px-[108px]">
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },
@@ -20,7 +20,7 @@ function ModiweekPage() {
       </div>
 
       {/* Editorial hero — "shop the look" treatment */}
-      <div className="mx-auto max-w-[1440px] px-6 pb-[48px] pt-[24px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pb-[48px] pt-[24px] md:px-[108px]">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[496px_1fr]">
           <div>
             <h1 className="mb-6 text-[32px] font-semibold capitalize leading-[1.4] text-[#0C0C0C]">
@@ -51,7 +51,7 @@ function ModiweekPage() {
       </div>
 
       {/* Modiweek products */}
-      <div className="mx-auto max-w-[1440px] px-6 pb-[80px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-6 pb-[80px] md:px-[108px]">
         <h2 className="mb-8 text-[24px] font-bold capitalize text-[#0C0C0C]">
           This Week's Picks
         </h2>

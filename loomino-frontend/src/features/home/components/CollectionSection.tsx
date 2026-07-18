@@ -1,17 +1,21 @@
-import kurtiImage from "@/assets/images/collection/kurti.png";
-import sareeImage from "@/assets/images/collection/saree.png";
-import shrugsImage from "@/assets/images/collection/shrugs.png";
-import kameezImage from "@/assets/images/collection/kameez.png";
+import kurtiImage from "@/assets/images/collection/kurti.jpg";
+import sareeImage from "@/assets/images/collection/saree.jpg";
+import shrugsImage from "@/assets/images/collection/shrugs.jpg";
+import kameezImage from "@/assets/images/collection/kameez.jpg";
 
 import Container from "@/components/layout/Container";
 import CollectionTile from "./CollectionTile";
 
 /**
- * Collection section, matching the Figma frame (node 1:2680):
- * two 600px columns (total 1224px, aligned with Best Sellers
- * and Modiweek), each with two stacked image tiles of differing
- * heights and a 64px gap. Category button placement alternates
- * per the design.
+ * Collection section, matching the Figma frame (node 1:2680)
+ * proportions: two equal-width fluid columns (each tile keeps
+ * its Figma aspect ratio via CollectionTile) so their bottoms
+ * align at any container width. The tall-then-short column
+ * (Kurti/Shrugs) uses a 144px gap; the short-then-tall column
+ * (Saree/Kameez) uses a 64px gap — different gaps by design,
+ * not a shared constant, since the tile heights themselves
+ * differ per column. Category button placement alternates per
+ * the design.
  */
 function CollectionSection() {
   return (
@@ -21,15 +25,25 @@ function CollectionSection() {
           Collection
         </h2>
 
-        <div className="flex justify-center gap-6">
-          {/* Left column — tall then short */}
-          <div className="flex w-[600px] flex-col gap-16">
+        <div className="flex gap-6">
+          {/* Left column — tall then short. The 144px gap is a
+              spacer (not Tailwind `gap`) so it scales with the
+              column width via aspect-ratio, same as the tiles —
+              otherwise a fixed-px gap would throw the two
+              columns' totals out of sync at widths other than
+              600px. */}
+          <div className="flex flex-1 flex-col">
             <CollectionTile
               title="Kurti"
               image={kurtiImage}
               height={840}
               to="/shop?category=kurti"
               buttonAlign="left"
+            />
+            <div
+              aria-hidden
+              className="w-full"
+              style={{ aspectRatio: "600 / 144" }}
             />
             <CollectionTile
               title="Shrugs"
@@ -41,14 +55,19 @@ function CollectionSection() {
             />
           </div>
 
-          {/* Right column — short then tall */}
-          <div className="flex w-[600px] flex-col gap-16">
+          {/* Right column — short then tall (64px scaling gap) */}
+          <div className="flex flex-1 flex-col">
             <CollectionTile
               title="Saree"
               image={sareeImage}
               height={518}
               to="/shop?category=saree"
               buttonAlign="right"
+            />
+            <div
+              aria-hidden
+              className="w-full"
+              style={{ aspectRatio: "600 / 64" }}
             />
             <CollectionTile
               title="Kameez"

@@ -7,12 +7,14 @@ import {
 } from "../services/catalog.service";
 import { listProducts } from "../services/commerce.service";
 import AdminButton from "./AdminButton";
-import type { VariantPayload } from "../types/commerce";
+import type { AdminVariant, VariantPayload } from "../types/commerce";
 
 interface VariantFormProps {
+  /** Pass an existing variant to edit it instead of creating a new one. */
+  initial?: AdminVariant;
   submitting: boolean;
   onCancel: () => void;
-  onSubmit: (payload: VariantPayload) => void;
+  onSubmit: (payload: Partial<VariantPayload>) => void;
 }
 
 const EMPTY: VariantPayload = {
@@ -26,15 +28,35 @@ const EMPTY: VariantPayload = {
 };
 
 /**
- * Creates a product variant (a colour + size combination with
- * its own stock, SKU and optional price override).
+ * Creates or edits a product variant (a colour + size combination
+ * with its own stock, SKU and optional price override).
  */
 function VariantForm({
+  initial,
   submitting,
   onCancel,
   onSubmit,
 }: VariantFormProps) {
-  const [form, setForm] = useState<VariantPayload>(EMPTY);
+  const isEdit = Boolean(initial);
+
+  const [form, setForm] = useState<VariantPayload>(() =>
+    initial
+      ? {
+          product: initial.product.id,
+          color: initial.color.id,
+          size: initial.size.id,
+          sku: initial.sku,
+          // The read serializer only exposes the computed selling
+          // price, not the raw override, so this starts blank —
+          // "Save Changes" only sends price_override if the admin
+          // actually types a new value (see `priceTouched` below).
+          price_override: null,
+          stock: initial.stock,
+          is_active: initial.is_active,
+        }
+      : EMPTY,
+  );
+  const [priceTouched, setPriceTouched] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const { data: products } = useQuery({
@@ -69,11 +91,21 @@ function VariantForm({
       return;
     }
     setError(null);
-    onSubmit({
+
+    const payload: Partial<VariantPayload> = {
       ...form,
-      price_override: form.price_override || null,
       stock: Number(form.stock) || 0,
-    });
+    };
+
+    if (isEdit && !priceTouched) {
+      // Don't overwrite an existing price override with null just
+      // because the field started blank in edit mode.
+      delete payload.price_override;
+    } else {
+      payload.price_override = form.price_override || null;
+    }
+
+    onSubmit(payload);
   };
 
   const input =
@@ -184,10 +216,15 @@ function VariantForm({
           className={input}
           type="number"
           value={form.price_override ?? ""}
-          onChange={(e) =>
-            set("price_override", e.target.value)
+          onChange={(e) => {
+            setPriceTouched(true);
+            set("price_override", e.target.value);
+          }}
+          placeholder={
+            isEdit
+              ? "Leave empty to keep the current price"
+              : "Leave empty to use the product price"
           }
-          placeholder="Leave empty to use the product price"
         />
       </label>
 
@@ -214,7 +251,7 @@ function VariantForm({
           Cancel
         </AdminButton>
         <AdminButton onClick={submit} disabled={submitting}>
-          Add Variant
+          {isEdit ? "Save Changes" : "Add Variant"}
         </AdminButton>
       </div>
     </div>

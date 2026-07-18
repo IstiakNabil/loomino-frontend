@@ -165,7 +165,7 @@ export async function deleteCoupon(id: number): Promise<void> {
 export async function toggleCouponActive(
   id: number,
 ): Promise<AdminCoupon> {
-  const res = await api.patch(
+  const res = await api.post(
     `/coupons/admin/${id}/toggle-active/`,
     {},
   );

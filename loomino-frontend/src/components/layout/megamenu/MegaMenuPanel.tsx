@@ -35,7 +35,7 @@ function MegaMenuPanel({
       <div className="h-3 w-full" />
 
       <div className="border-t border-[#CBCBCB] shadow-lg">
-        <div className="mx-auto flex max-w-[1440px] gap-16 px-[108px] py-12">
+        <div className="mx-auto flex max-w-[1920px] gap-16 px-[108px] py-12">
           {/* Text columns */}
           {menu.columns.map((column) => {
             const links = column.dynamicCategories
