@@ -8,6 +8,7 @@ import {
   Users,
   Mail,
   Send,
+  LayoutGrid,
   ChevronDown,
   LogOut,
 } from "lucide-react";
@@ -31,6 +32,7 @@ const ICONS: Record<
   users: Users,
   mail: Mail,
   send: Send,
+  layout: LayoutGrid,
 };
 
 function AdminSidebar() {

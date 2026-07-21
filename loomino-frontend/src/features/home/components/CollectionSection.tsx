@@ -3,8 +3,10 @@ import sareeImage from "@/assets/images/collection/saree.jpg";
 import shrugsImage from "@/assets/images/collection/shrugs.jpg";
 import kameezImage from "@/assets/images/collection/kameez.jpg";
 
+import { getMediaUrl } from "@/lib/utils";
 import Container from "@/components/layout/Container";
 import CollectionTile from "./CollectionTile";
+import { useSiteBanners } from "../hooks/useSiteBanners";
 
 /**
  * Collection section, matching the Figma frame (node 1:2680)
@@ -16,8 +18,19 @@ import CollectionTile from "./CollectionTile";
  * not a shared constant, since the tile heights themselves
  * differ per column. Category button placement alternates per
  * the design.
+ *
+ * Each tile image comes from the admin-managed Site Banners
+ * (CMS > Site Banners), falling back to the bundled default
+ * photo until an admin uploads a replacement.
  */
 function CollectionSection() {
+  const { data: banners } = useSiteBanners();
+
+  const imageFor = (key: string, fallback: string) => {
+    const banner = banners?.find((b) => b.key === key);
+    return (banner?.image ? getMediaUrl(banner.image) : null) ?? fallback;
+  };
+
   return (
     <section className="w-full bg-[#F7F0E5] py-20">
       <Container>
@@ -35,7 +48,7 @@ function CollectionSection() {
           <div className="flex flex-1 flex-col">
             <CollectionTile
               title="Kurti"
-              image={kurtiImage}
+              image={imageFor("collection_kurti", kurtiImage)}
               height={840}
               to="/shop?category=kurti"
               buttonAlign="left"
@@ -47,7 +60,7 @@ function CollectionSection() {
             />
             <CollectionTile
               title="Shrugs"
-              image={shrugsImage}
+              image={imageFor("collection_shrugs", shrugsImage)}
               height={435}
               to="/shop?category=shrugs"
               buttonAlign="right"
@@ -59,7 +72,7 @@ function CollectionSection() {
           <div className="flex flex-1 flex-col">
             <CollectionTile
               title="Saree"
-              image={sareeImage}
+              image={imageFor("collection_saree", sareeImage)}
               height={518}
               to="/shop?category=saree"
               buttonAlign="right"
@@ -71,7 +84,7 @@ function CollectionSection() {
             />
             <CollectionTile
               title="Kameez"
-              image={kameezImage}
+              image={imageFor("collection_kameez", kameezImage)}
               height={837}
               to="/shop?category=kameez"
               buttonAlign="right"

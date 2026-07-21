@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { Toaster } from "sonner";
 
 import AdminSidebar from "./AdminSidebar";
 import AdminTopbar from "./AdminTopbar";
@@ -13,6 +14,8 @@ function AdminLayout() {
           <Outlet />
         </main>
       </div>
+
+      <Toaster position="top-right" richColors closeButton />
     </div>
   );
 }

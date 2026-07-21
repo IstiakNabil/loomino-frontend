@@ -1,37 +1,18 @@
 import { Link } from "react-router-dom";
 
-import sundayImage from "@/assets/images/midweek/sunday.jpg";
-import mondayImage from "@/assets/images/midweek/monday.jpg";
-import tuesdayImage from "@/assets/images/midweek/tuesday.jpg";
-import wednesdayImage from "@/assets/images/midweek/wednesday.jpg";
-import thursdayImage from "@/assets/images/midweek/thursday.jpg";
-
+import { useModiweek } from "@/features/product-details/hooks/useModiweek";
 import MidweekCard from "./MidweekCard";
 
-const midweekItems = [
-  {
-    day: "Sunday",
-    image: sundayImage,
-  },
-  {
-    day: "Monday",
-    image: mondayImage,
-  },
-  {
-    day: "Tuesday",
-    image: tuesdayImage,
-  },
-  {
-    day: "Wednesday",
-    image: wednesdayImage,
-  },
-  {
-    day: "Thursday",
-    image: thursdayImage,
-  },
-];
+const MAX_CARDS = 5;
 
 function MidweekSection() {
+  const { data: products } = useModiweek();
+  const items = (products ?? []).slice(0, MAX_CARDS);
+
+  // Nothing marked as Modiweek yet — skip the section rather
+  // than show an empty heading with no cards under it.
+  if (products && items.length === 0) return null;
+
   return (
     <section className="w-full bg-[#F7F0E5] py-20">
       <div className="mx-auto w-full max-w-[1920px] px-[108px]">
@@ -48,12 +29,8 @@ function MidweekSection() {
       </div>
 
       <div className="flex gap-6">
-        {midweekItems.map((item) => (
-          <MidweekCard
-            key={item.day}
-            day={item.day}
-            image={item.image}
-          />
+        {items.map((product) => (
+          <MidweekCard key={product.id} product={product} />
         ))}
       </div>
       </div>

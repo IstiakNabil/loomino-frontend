@@ -3,12 +3,21 @@ import { Link } from "react-router-dom";
 import { CURRENCY_SYMBOL } from "@/lib/constants";
 import type { Product } from "@/types/product";
 import WishlistButton from "@/features/wishlist/components/WishlistButton";
+import AddToCartButton from "@/features/cart/components/AddToCartButton";
 
 interface ProductCardProps {
   product: Product;
+  /**
+   * Shows a quick "add to cart" button alongside the wishlist
+   * heart, adding the product's default variant directly (no
+   * size/color picker). Off by default — only Best Sellers asks
+   * for this; Shop/Related Products/Plus Size keep the existing
+   * card-only-links-to-detail-page behavior.
+   */
+  showQuickAdd?: boolean;
 }
 
-function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product, showQuickAdd = false }: ProductCardProps) {
   return (
     <Link
       to={`/products/${product.slug}`}
@@ -23,12 +32,24 @@ function ProductCard({ product }: ProductCardProps) {
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
 
-          <div className="absolute right-3 top-3 rounded-full bg-white/80 p-2 backdrop-blur-sm">
-            <WishlistButton
-              variantId={product.default_variant_id}
-              productName={product.name}
-              size={24}
-            />
+          <div className="absolute right-3 top-3 flex flex-col gap-2">
+            <div className="rounded-full bg-white/80 p-2 backdrop-blur-sm">
+              <WishlistButton
+                variantId={product.default_variant_id}
+                productName={product.name}
+                size={24}
+              />
+            </div>
+
+            {showQuickAdd && (
+              <div className="rounded-full bg-white/80 p-2 backdrop-blur-sm">
+                <AddToCartButton
+                  variantId={product.default_variant_id}
+                  productName={product.name}
+                  size={24}
+                />
+              </div>
+            )}
           </div>
         </div>
 

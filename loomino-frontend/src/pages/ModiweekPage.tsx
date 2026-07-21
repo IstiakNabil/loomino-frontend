@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import Breadcrumb from "@/components/common/Breadcrumb";
 import ProductCard from "@/components/product/ProductCard";
-import ImagePlaceholder from "@/features/sustainability/components/ImagePlaceholder";
+import CmsImage from "@/components/common/CmsImage";
 import { useModiweek } from "@/features/product-details/hooks/useModiweek";
 
 function ModiweekPage() {
@@ -26,7 +26,8 @@ function ModiweekPage() {
             <h1 className="mb-6 text-[32px] font-semibold capitalize leading-[1.4] text-[#0C0C0C]">
               The Modiweek Edit
             </h1>
-            <ImagePlaceholder
+            <CmsImage
+              bannerKey="modiweek_feature"
               label="Modiweek feature look"
               className="h-[560px] w-full"
             />

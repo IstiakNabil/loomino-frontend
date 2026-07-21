@@ -117,6 +117,3 @@ api.interceptors.response.use(
 export default api;
 
 export const API_BASE_URL = (import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000/api").replace("/api", "");
-
-/** Single source of truth for the display currency. */
-export const CURRENCY_SYMBOL = "$";

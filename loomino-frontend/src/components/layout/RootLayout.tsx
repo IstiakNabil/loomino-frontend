@@ -5,8 +5,11 @@ import AnnouncementBar from "./AnnouncementBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer/Footer";
 import WelcomeModal from "@/features/welcome/WelcomeModal";
+import { useScrollToHash } from "@/app/hooks/useScrollToHash";
 
 function RootLayout() {
+  useScrollToHash();
+
   return (
     <div className="min-h-screen">
       <WelcomeModal />

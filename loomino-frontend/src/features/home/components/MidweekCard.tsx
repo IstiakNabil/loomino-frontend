@@ -1,34 +1,57 @@
-import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+
+import { getMediaUrl } from "@/lib/utils";
+import { CURRENCY_SYMBOL } from "@/lib/constants";
+import WishlistButton from "@/features/wishlist/components/WishlistButton";
+import AddToCartButton from "@/features/cart/components/AddToCartButton";
+import type { Product } from "@/types/product";
 
 interface MidweekCardProps {
-  day: string;
-  image: string;
+  product: Product;
 }
 
-function MidweekCard({
-  day,
-  image,
-}: MidweekCardProps) {
+function MidweekCard({ product }: MidweekCardProps) {
   return (
-    <article className="w-full min-w-0 flex-1">
-      <div
-        className="relative w-full overflow-hidden"
+    <article className="group w-[288px] shrink-0 transition-opacity duration-200 hover:opacity-95">
+      <Link
+        to={`/products/${product.slug}`}
+        className="relative block w-full overflow-hidden"
         style={{ aspectRatio: "288 / 426" }}
       >
         <img
-          src={image}
-          alt={day}
-          className="h-full w-full object-cover"
+          src={getMediaUrl(product.thumbnail) ?? ""}
+          alt={product.name}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
 
-        <button className="absolute right-4 top-4">
-          <Heart size={18} className="stroke-[1.8]" />
-        </button>
-      </div>
+        <div className="absolute right-4 top-4 flex flex-col gap-2">
+          <WishlistButton
+            variantId={product.default_variant_id}
+            productName={product.name}
+            size={18}
+          />
+          <AddToCartButton
+            variantId={product.default_variant_id}
+            productName={product.name}
+            size={18}
+          />
+        </div>
+      </Link>
 
-      <p className="mt-4 text-[13px] font-medium text-[#1E1E1E]">
-        {day}
-      </p>
+      <Link to={`/products/${product.slug}`} className="block">
+        {product.brand && (
+          <p className="mt-4 truncate text-[13px] font-bold capitalize text-[#0C0C0C]">
+            {product.brand}
+          </p>
+        )}
+        <p className="mt-1 truncate text-[13px] font-medium text-[#1E1E1E] group-hover:underline">
+          {product.name}
+        </p>
+        <p className="mt-1 text-[13px] font-bold text-[#0C0C0C]">
+          {CURRENCY_SYMBOL}
+          {Number(product.price).toFixed(0)}
+        </p>
+      </Link>
     </article>
   );
 }

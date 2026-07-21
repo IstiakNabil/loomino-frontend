@@ -1,5 +1,5 @@
 import Breadcrumb from "@/components/common/Breadcrumb";
-import ImagePlaceholder from "@/features/sustainability/components/ImagePlaceholder";
+import CmsImage from "@/components/common/CmsImage";
 import {
   SUSTAINABILITY_INTRO,
   MISSIONS,
@@ -7,6 +7,14 @@ import {
   SUPPLIERS_QUOTE,
   CLOSING_STATEMENT,
 } from "@/features/sustainability/content";
+
+// Maps each PILLARS label to its CMS > Site Banners key.
+const PILLAR_BANNER_KEYS: Record<string, string> = {
+  Processing: "sustainability_processing",
+  Materials: "sustainability_materials",
+  Packaging: "sustainability_packaging",
+  "Product Caring": "sustainability_product_caring",
+};
 
 function SustainabilityPage() {
   return (
@@ -24,7 +32,8 @@ function SustainabilityPage() {
 
       {/* Hero */}
       <div className="relative mt-6 h-[420px] w-full overflow-hidden md:h-[600px]">
-        <ImagePlaceholder
+        <CmsImage
+          bannerKey="sustainability_hero"
           label="Sustainability hero image"
           className="h-full w-full"
         />
@@ -49,7 +58,10 @@ function SustainabilityPage() {
       </section>
 
       {/* Mission — "The Loomino Six" */}
-      <section className="mx-auto max-w-[1224px] px-6 pb-[64px] md:px-[108px]">
+      <section
+        id="mission"
+        className="mx-auto max-w-[1224px] px-6 pb-[64px] md:px-[108px]"
+      >
         <h2 className="text-[24px] font-bold capitalize leading-[1.4] text-[#0C0C0C]">
           Our Mission, The Loomino Six:
         </h2>
@@ -72,8 +84,13 @@ function SustainabilityPage() {
       <section className="mx-auto max-w-[1224px] px-6 pb-[64px] md:px-[108px]">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PILLARS.map((pillar) => (
-            <div key={pillar} className="flex flex-col gap-4">
-              <ImagePlaceholder
+            <div
+              key={pillar}
+              id={pillar.toLowerCase().replace(/\s+/g, "-")}
+              className="flex flex-col gap-4"
+            >
+              <CmsImage
+                bannerKey={PILLAR_BANNER_KEYS[pillar]}
                 label={`${pillar} image`}
                 className="h-[360px] w-full"
               />
@@ -89,7 +106,10 @@ function SustainabilityPage() {
       </section>
 
       {/* Suppliers quote */}
-      <section className="mx-auto max-w-[1224px] px-6 pb-[48px] md:px-[108px]">
+      <section
+        id="suppliers"
+        className="mx-auto max-w-[1224px] px-6 pb-[48px] md:px-[108px]"
+      >
         <p className="text-[18px] italic leading-[1.8] text-[#0C0C0C] md:text-[20px]">
           {SUPPLIERS_QUOTE}
         </p>
@@ -102,18 +122,36 @@ function SustainabilityPage() {
         </h2>
 
         <div className="mt-6 grid grid-cols-2 gap-6 md:grid-cols-4">
-          <ImagePlaceholder label="Team 1" className="h-[243px]" />
-          <ImagePlaceholder label="Team 2" className="h-[243px]" />
-          <ImagePlaceholder
+          <CmsImage
+            bannerKey="sustainability_team_1"
+            label="Team 1"
+            className="h-[243px]"
+          />
+          <CmsImage
+            bannerKey="sustainability_team_2"
+            label="Team 2"
+            className="h-[243px]"
+          />
+          <CmsImage
+            bannerKey="sustainability_team_3"
             label="Team 3"
             className="col-span-2 h-[243px]"
           />
-          <ImagePlaceholder
+          <CmsImage
+            bannerKey="sustainability_team_4"
             label="Team 4"
             className="col-span-2 h-[283px]"
           />
-          <ImagePlaceholder label="Team 5" className="h-[283px]" />
-          <ImagePlaceholder label="Team 6" className="h-[283px]" />
+          <CmsImage
+            bannerKey="sustainability_team_5"
+            label="Team 5"
+            className="h-[283px]"
+          />
+          <CmsImage
+            bannerKey="sustainability_team_6"
+            label="Team 6"
+            className="h-[283px]"
+          />
         </div>
 
         <button

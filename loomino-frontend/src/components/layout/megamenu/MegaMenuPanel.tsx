@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+import { getMediaUrl } from "@/lib/utils";
+import ImagePlaceholder from "@/features/sustainability/components/ImagePlaceholder";
+import { useSiteBanners } from "@/features/home/hooks/useSiteBanners";
 import type { MegaMenu } from "./menuData";
 import { useMenuCategories } from "./useMenuCategories";
 
@@ -15,6 +18,11 @@ interface MegaMenuPanelProps {
  * panel with text columns, matching the Figma menu frames.
  * Columns marked `dynamicCategories` are filled with live
  * categories from the API. Keeps the menu open while hovered.
+ *
+ * The right side shows a couple of photo tiles per menu
+ * (`menu.tiles`) — their images come from CMS > Site Banners,
+ * falling back to the same gray placeholder used elsewhere on
+ * the site until an admin uploads one.
  */
 function MegaMenuPanel({
   menu,
@@ -23,6 +31,7 @@ function MegaMenuPanel({
   onMouseLeave,
 }: MegaMenuPanelProps) {
   const categories = useMenuCategories();
+  const { data: banners } = useSiteBanners();
 
   return (
     <div
@@ -69,6 +78,48 @@ function MegaMenuPanel({
               </div>
             );
           })}
+
+          {/* Photo tiles */}
+          {menu.tiles.length > 0 && (
+            <div className="ml-auto flex gap-6">
+              {menu.tiles.map((tile) => {
+                const banner = banners?.find(
+                  (b) => b.key === tile.bannerKey,
+                );
+                const imageUrl = banner?.image
+                  ? getMediaUrl(banner.image)
+                  : null;
+
+                return (
+                  <Link
+                    key={tile.bannerKey}
+                    to={tile.to}
+                    onClick={onNavigate}
+                    className="group block shrink-0"
+                    style={{ width: menu.tileWidth }}
+                  >
+                    {imageUrl ? (
+                      <img
+                        src={imageUrl}
+                        alt={tile.label}
+                        className="w-full object-cover transition group-hover:opacity-90"
+                        style={{ height: menu.tileHeight }}
+                      />
+                    ) : (
+                      <ImagePlaceholder
+                        label={tile.label}
+                        className="w-full"
+                        style={{ height: menu.tileHeight }}
+                      />
+                    )}
+                    <p className="mt-3 text-[16px] text-[#0C0C0C] group-hover:underline">
+                      {tile.label}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>

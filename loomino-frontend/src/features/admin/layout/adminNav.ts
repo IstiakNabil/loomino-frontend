@@ -76,4 +76,23 @@ export const ADMIN_NAV: AdminNavSection[] = [
       },
     ],
   },
+  {
+    heading: "Content",
+    items: [
+      {
+        label: "CMS",
+        icon: "layout",
+        children: [
+          {
+            label: "Offer Banner",
+            to: "/admin/offer-banners",
+          },
+          {
+            label: "Site Banners",
+            to: "/admin/site-banners",
+          },
+        ],
+      },
+    ],
+  },
 ];

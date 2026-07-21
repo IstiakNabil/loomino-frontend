@@ -1,10 +1,4 @@
-export type PaymentMethod =
-  | "cod"
-  | "bkash"
-  | "nagad"
-  | "rocket"
-  | "sslcommerz"
-  | "stripe";
+export type PaymentMethod = "cod" | "sslcommerz";
 
 export interface CheckoutRequest {
   address_id: number;

@@ -31,7 +31,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "What type of payment methods do you offer?",
     answer:
-      "We accept Cash on Delivery, bKash, Nagad, Rocket, SSLCommerz, and card payments. You can choose your preferred method at checkout.",
+      "We accept Cash on Delivery and payments through our SSL Gateway. You can choose your preferred method at checkout.",
   },
   {
     question: "Which size will fit me best?",

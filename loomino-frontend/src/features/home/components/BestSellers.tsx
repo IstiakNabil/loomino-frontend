@@ -28,6 +28,7 @@ function BestSellers() {
         <ProductCard
           key={product.id}
           product={product}
+          showQuickAdd
         />
       ))}
     </div>

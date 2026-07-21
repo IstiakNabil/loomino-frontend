@@ -7,11 +7,7 @@ interface PaymentMethodSelectorProps {
 
 const METHODS: { key: PaymentMethod; label: string }[] = [
   { key: "cod", label: "Cash On Delivery" },
-  { key: "bkash", label: "bKash" },
-  { key: "nagad", label: "Nagad" },
-  { key: "rocket", label: "Rocket" },
-  { key: "sslcommerz", label: "SSLCommerz" },
-  { key: "stripe", label: "Card (Stripe)" },
+  { key: "sslcommerz", label: "SSL Gateway" },
 ];
 
 function PaymentMethodSelector({

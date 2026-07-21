@@ -1,12 +1,15 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
 import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router-dom";
 
+import authReducer from "@/features/auth/store/authSlice";
 import CartPage from "@/pages/CartPage";
 import * as cartService from "@/features/cart/services/cart.service";
 import type { CartResponse } from "@/features/cart/types/cart";
@@ -63,16 +66,29 @@ const emptyCart: CartResponse = {
 };
 
 function renderCartPage() {
+  const store = configureStore({
+    reducer: { auth: authReducer },
+    preloadedState: {
+      auth: {
+        user: { email: "a@b.com" } as never,
+        accessToken: "token",
+        refreshToken: "refresh",
+        isAuthenticated: true,
+      },
+    },
+  });
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false } },
   });
 
   render(
-    <QueryClientProvider client={queryClient}>
-      <MemoryRouter initialEntries={["/cart"]}>
-        <CartPage />
-      </MemoryRouter>
-    </QueryClientProvider>,
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter initialEntries={["/cart"]}>
+          <CartPage />
+        </MemoryRouter>
+      </QueryClientProvider>
+    </Provider>,
   );
 }
 

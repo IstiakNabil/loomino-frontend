@@ -47,6 +47,8 @@ import AdminOrders from "@/features/admin/pages/AdminOrders";
 import AdminCoupons from "@/features/admin/pages/AdminCoupons";
 import AdminMails from "@/features/admin/pages/AdminMails";
 import AdminNewsletters from "@/features/admin/pages/AdminNewsletters";
+import AdminOfferBanners from "@/features/admin/pages/AdminOfferBanners";
+import AdminSiteBanners from "@/features/admin/pages/AdminSiteBanners";
 
 export const router = createBrowserRouter([
   {
@@ -241,6 +243,14 @@ export const router = createBrowserRouter([
           {
             path: "mails",
             element: <AdminMails />,
+          },
+          {
+            path: "offer-banners",
+            element: <AdminOfferBanners />,
+          },
+          {
+            path: "site-banners",
+            element: <AdminSiteBanners />,
           },
           {
             path: "newsletters",
