@@ -7,9 +7,9 @@ import FooterBottom from "./FooterBottom";
 
 function Footer() {
   return (
-    <footer className="bg-[#0F141D] pt-12 pb-10">
+    <footer className="bg-[#0F141D] pb-10 pt-12">
       <Container>
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-8">
           <div>
             <Newsletter />
             <SocialLinks />

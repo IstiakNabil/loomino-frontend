@@ -12,28 +12,28 @@ function OrderSummary() {
   }
 
   return (
-    <div className="mt-[48px] flex justify-end">
+    <div className="mt-8 flex justify-end lg:mt-[48px]">
       <div className="w-full max-w-[496px]">
-        <div className="space-y-5 border-t border-[#DCD3C3] pt-8">
+        <div className="space-y-4 border-t border-[#DCD3C3] pt-6 lg:space-y-5 lg:pt-8">
           <div className="flex items-center justify-between">
-            <span className="text-[20px]">
+            <span className="text-[15px] lg:text-[20px]">
               Subtotal ({data.total_items})
             </span>
-            <span className="text-[20px]">
+            <span className="text-[15px] lg:text-[20px]">
               {formatPrice(data.total_price)}
             </span>
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="text-[20px]">Shipping</span>
-            <span className="text-[20px]">Free</span>
+            <span className="text-[15px] lg:text-[20px]">Shipping</span>
+            <span className="text-[15px] lg:text-[20px]">Free</span>
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="text-[20px] font-medium">
+            <span className="text-[15px] font-medium lg:text-[20px]">
               Total Orders:
             </span>
-            <span className="text-[20px] font-medium">
+            <span className="text-[15px] font-medium lg:text-[20px]">
               {formatPrice(data.total_price)}
             </span>
           </div>
@@ -45,11 +45,11 @@ function OrderSummary() {
           additional charges on delivery
         </p>
 
-        <div className="mt-8 flex justify-end">
+        <div className="mt-6 flex justify-end lg:mt-8">
           <button
             type="button"
             onClick={() => navigate("/checkout")}
-            className="h-[48px] w-[184px] bg-[#5B3A0E] text-[16px] text-white transition hover:opacity-90"
+            className="h-10 w-full bg-[#5B3A0E] text-[14px] text-white transition hover:opacity-90 lg:h-[48px] lg:w-[184px] lg:text-[16px]"
           >
             Next
           </button>

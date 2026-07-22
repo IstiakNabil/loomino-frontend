@@ -57,14 +57,14 @@ function ProductCard({ product, showQuickAdd = false }: ProductCardProps) {
         </div>
 
         {/* Product Info */}
-        <div className="mt-3 flex items-center justify-between gap-3 px-2">
+        <div className="mt-3 flex items-center justify-between gap-2 px-0 lg:gap-3 lg:px-2">
           <div className="flex min-w-0 flex-1 flex-col gap-2">
             {product.brand && (
-              <p className="truncate text-[16px] font-bold capitalize leading-[1.4] text-[#0C0C0C]">
+              <p className="truncate text-[14px] font-bold capitalize leading-[1.4] text-[#0C0C0C] lg:text-[16px]">
                 {product.brand}
               </p>
             )}
-            <p className="truncate text-[16px] font-normal capitalize leading-[1.8] text-[#0C0C0C]">
+            <p className="truncate text-[14px] font-normal capitalize leading-[1.4] text-[#0C0C0C] lg:text-[16px] lg:leading-[1.8]">
               {product.name}
             </p>
             {product.colors && product.colors.length > 0 && (
@@ -72,7 +72,7 @@ function ProductCard({ product, showQuickAdd = false }: ProductCardProps) {
                 {product.colors.slice(0, 3).map((color) => (
                   <span
                     key={color.id}
-                    className="h-6 w-6 shrink-0 rounded-full border border-black/10"
+                    className="h-4 w-4 shrink-0 rounded-full border border-black/10 lg:h-6 lg:w-6"
                     style={{ backgroundColor: color.hex_code }}
                     title={color.name}
                   />
@@ -81,7 +81,7 @@ function ProductCard({ product, showQuickAdd = false }: ProductCardProps) {
             )}
           </div>
 
-          <p className="shrink-0 whitespace-nowrap text-[16px] font-bold text-[#0C0C0C]">
+          <p className="shrink-0 whitespace-nowrap text-[14px] font-bold text-[#0C0C0C] lg:text-[16px]">
             {CURRENCY_SYMBOL}
             {Number(product.price).toFixed(0)}
           </p>

@@ -8,7 +8,7 @@ const TABS = [
 
 function AccountTabs() {
   return (
-    <nav className="flex gap-1 border-b border-[#CBCBCB]">
+    <nav className="flex gap-1 overflow-x-auto border-b border-[#CBCBCB] scrollbar-hide">
       {TABS.map((tab) => (
         <NavLink
           key={tab.to}

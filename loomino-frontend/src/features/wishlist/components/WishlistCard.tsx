@@ -25,7 +25,7 @@ function WishlistCard({ item }: WishlistCardProps) {
         removeMutation.isPending ? "opacity-50" : ""
       }`}
     >
-      <div className="relative h-[438px] w-full overflow-hidden bg-[#E4DACA]">
+      <div className="relative aspect-[392/438] w-full overflow-hidden bg-[#E4DACA]">
         <Link to={`/products/${item.product_slug}`}>
           {imageUrl ? (
             <img
@@ -47,7 +47,7 @@ function WishlistCard({ item }: WishlistCardProps) {
           }
           disabled={removeMutation.isPending}
           aria-label={`Remove ${item.product_name} from wishlist`}
-          className="absolute right-6 top-6 transition hover:scale-110 disabled:opacity-50"
+          className="absolute right-3 top-3 transition hover:scale-110 disabled:opacity-50 lg:right-6 lg:top-6"
         >
           <Heart
             size={24}
@@ -60,12 +60,12 @@ function WishlistCard({ item }: WishlistCardProps) {
         <div className="flex flex-col gap-2">
           <Link
             to={`/products/${item.product_slug}`}
-            className="text-[16px] font-bold capitalize leading-[1.4] text-[#0C0C0C] hover:underline"
+            className="text-[14px] font-bold capitalize leading-[1.4] text-[#0C0C0C] hover:underline lg:text-[16px]"
           >
             {item.product_name}
           </Link>
 
-          <p className="text-[15px] text-[#0C0C0C]">
+          <p className="text-[13px] text-[#0C0C0C] lg:text-[15px]">
             {variant.size?.name
               ? `Size: ${variant.size.name}`
               : ""}
@@ -79,7 +79,7 @@ function WishlistCard({ item }: WishlistCardProps) {
 
           {variant.color?.hex_code && (
             <span
-              className="mt-1 inline-block h-6 w-6 rounded-full border border-[#CBCBCB]"
+              className="mt-1 inline-block h-4 w-4 rounded-full border border-[#CBCBCB] lg:h-6 lg:w-6"
               style={{
                 backgroundColor: variant.color.hex_code,
               }}
@@ -88,7 +88,7 @@ function WishlistCard({ item }: WishlistCardProps) {
           )}
         </div>
 
-        <p className="text-[16px] font-bold text-[#0C0C0C]">
+        <p className="text-[14px] font-bold text-[#0C0C0C] lg:text-[16px]">
           {formatPrice(variant.price)}
         </p>
       </div>

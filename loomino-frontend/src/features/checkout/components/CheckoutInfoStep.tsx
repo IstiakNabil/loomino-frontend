@@ -85,7 +85,7 @@ function CheckoutInfoStep({
           type="email"
           value={user?.email ?? ""}
           readOnly
-          className="h-[52px] w-full border border-[#B9AE97] bg-transparent px-4 text-[15px] text-[#3F3A30] outline-none"
+          className="h-10 w-full border border-[#B9AE97] bg-transparent px-4 text-[14px] text-[#3F3A30] outline-none lg:h-[52px] lg:text-[15px]"
         />
       </div>
 
@@ -183,7 +183,7 @@ function CheckoutInfoStep({
         <button
           type="submit"
           disabled={createAddress.isPending}
-          className="h-[52px] w-[220px] bg-[#5B3A0E] text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="h-10 w-full bg-[#5B3A0E] text-[14px] text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 lg:h-[52px] lg:w-[220px] lg:text-[16px]"
         >
           {createAddress.isPending
             ? "Saving..."

@@ -72,7 +72,7 @@ function ProductList({
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4 lg:gap-6">
             {products.map((product) => (
               <ProductCard
                 key={product.id}

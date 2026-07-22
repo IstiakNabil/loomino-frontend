@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { getMediaUrl } from "@/lib/utils";
-import fallbackHeroImage from "@/assets/images/hero/hero.png";
+import fallbackHeroImage from "@/assets/images/hero/hero-banner.jpg";
 import { useSiteBanners } from "../hooks/useSiteBanners";
 
 // The homepage hero always loops through exactly these 3 fixed
@@ -38,7 +38,7 @@ function HeroSection() {
   }, [slideImages.length]);
 
   return (
-    <section className="font-loomino relative h-[660px] w-full overflow-hidden">
+    <section className="font-loomino relative h-[544px] w-full overflow-hidden lg:h-[660px]">
       <div
         className="absolute inset-0 flex h-full w-full transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${index * 100}%)` }}
@@ -54,9 +54,9 @@ function HeroSection() {
       </div>
 
       <div className="absolute inset-0">
-        <div className="mx-auto flex h-full max-w-[1920px] flex-col justify-center px-[108px]">
+        <div className="mx-auto flex h-full max-w-[1920px] flex-col justify-center px-5 md:px-10 lg:px-[108px]">
           <h1
-            className="whitespace-pre-line text-[48px] capitalize leading-[1.37] text-[#F0E6D8]"
+            className="whitespace-pre-line text-[32px] capitalize leading-[1.37] text-[#F0E6D8] lg:text-[48px]"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
@@ -69,7 +69,7 @@ function HeroSection() {
 
           <Link
             to="/shop?is_new_arrival=true"
-            className="mt-[27px] flex h-[40px] w-[184px] items-center justify-center gap-1 bg-[#4C300D] p-4 text-[14px] capitalize text-[#F2F2F7] transition hover:opacity-90"
+            className="mt-6 flex h-[40px] w-[152px] items-center justify-center gap-1 bg-[#4C300D] p-4 text-[14px] capitalize text-[#F2F2F7] transition hover:opacity-90 lg:mt-[27px] lg:w-[184px]"
             style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600 }}
           >
             New In

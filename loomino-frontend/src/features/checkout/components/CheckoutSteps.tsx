@@ -17,7 +17,7 @@ function CheckoutSteps({
   onNavigate,
 }: CheckoutStepsProps) {
   return (
-    <nav className="flex items-center gap-3 text-[20px]">
+    <nav className="flex flex-wrap items-center gap-2 text-[14px] lg:gap-3 lg:text-[20px]">
       {STEPS.map((s, index) => {
         const isActive = s.key === current;
 
@@ -25,7 +25,7 @@ function CheckoutSteps({
           s.key === "cart" || s.key === "info";
 
         return (
-          <div key={s.key} className="flex items-center gap-3">
+          <div key={s.key} className="flex items-center gap-2 lg:gap-3">
             {s.key === "cart" ? (
               <a
                 href="/cart"

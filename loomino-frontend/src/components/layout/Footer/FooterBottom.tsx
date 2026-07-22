@@ -9,8 +9,8 @@ function FooterBottom() {
   }
 
   return (
-    <div className="mt-10 flex items-center justify-between border-t border-[#2B2F36] pt-6">
-      <p className="text-sm text-[#B8BDC7]">
+    <div className="mt-10 flex flex-col-reverse items-start gap-6 border-t border-[#2B2F36] pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
+      <p className="text-xs text-[#B8BDC7] sm:text-sm">
         © 2026 Loomino. All Rights Reserved.
       </p>
 

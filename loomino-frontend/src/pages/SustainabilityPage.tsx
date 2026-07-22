@@ -20,7 +20,7 @@ function SustainabilityPage() {
   return (
     <div className="font-loomino bg-[#F0E6D8]">
       {/* Breadcrumb */}
-      <div className="mx-auto max-w-[1920px] px-6 pt-[32px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-5 md:px-10 pt-[32px] lg:px-[108px]">
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },
@@ -31,21 +31,21 @@ function SustainabilityPage() {
       </div>
 
       {/* Hero */}
-      <div className="relative mt-6 h-[420px] w-full overflow-hidden md:h-[600px]">
+      <div className="relative mt-6 h-[420px] w-full overflow-hidden md:h-[360px] lg:h-[600px]">
         <CmsImage
           bannerKey="sustainability_hero"
           label="Sustainability hero image"
           className="h-full w-full"
         />
         <div className="absolute inset-0 flex items-end justify-center bg-black/25 pb-12">
-          <p className="px-6 text-center text-[28px] font-bold capitalize leading-[1.4] text-[#F0E6D8] md:text-[40px]">
+          <p className="px-5 md:px-10 text-center text-[28px] font-bold capitalize leading-[1.4] text-[#F0E6D8] md:text-[40px]">
             {SUSTAINABILITY_INTRO.heroTagline}
           </p>
         </div>
       </div>
 
       {/* Intro */}
-      <section className="mx-auto max-w-[1224px] px-6 py-[64px] text-center md:px-[108px]">
+      <section className="mx-auto max-w-[1224px] px-5 md:px-10 py-[64px] text-center lg:px-[108px]">
         <h1 className="text-[28px] font-semibold capitalize leading-[1.4] text-[#0C0C0C] md:text-[32px]">
           {SUSTAINABILITY_INTRO.heading}
         </h1>
@@ -60,7 +60,7 @@ function SustainabilityPage() {
       {/* Mission — "The Loomino Six" */}
       <section
         id="mission"
-        className="mx-auto max-w-[1224px] px-6 pb-[64px] md:px-[108px]"
+        className="mx-auto max-w-[1224px] px-5 md:px-10 pb-[64px] lg:px-[108px]"
       >
         <h2 className="text-[24px] font-bold capitalize leading-[1.4] text-[#0C0C0C]">
           Our Mission, The Loomino Six:
@@ -81,7 +81,7 @@ function SustainabilityPage() {
       </section>
 
       {/* Pillar tiles */}
-      <section className="mx-auto max-w-[1224px] px-6 pb-[64px] md:px-[108px]">
+      <section className="mx-auto max-w-[1224px] px-5 md:px-10 pb-[64px] lg:px-[108px]">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PILLARS.map((pillar) => (
             <div
@@ -108,7 +108,7 @@ function SustainabilityPage() {
       {/* Suppliers quote */}
       <section
         id="suppliers"
-        className="mx-auto max-w-[1224px] px-6 pb-[48px] md:px-[108px]"
+        className="mx-auto max-w-[1224px] px-5 md:px-10 pb-[48px] lg:px-[108px]"
       >
         <p className="text-[18px] italic leading-[1.8] text-[#0C0C0C] md:text-[20px]">
           {SUPPLIERS_QUOTE}
@@ -116,7 +116,7 @@ function SustainabilityPage() {
       </section>
 
       {/* People Beyond Us */}
-      <section className="mx-auto max-w-[1224px] px-6 pb-[48px] md:px-[108px]">
+      <section className="mx-auto max-w-[1224px] px-5 md:px-10 pb-[48px] lg:px-[108px]">
         <h2 className="text-[24px] font-bold capitalize leading-[1.4] text-[#0C0C0C]">
           People Beyond Us
         </h2>
@@ -163,7 +163,7 @@ function SustainabilityPage() {
       </section>
 
       {/* Closing */}
-      <section className="mx-auto max-w-[1224px] px-6 pb-[80px] md:px-[108px]">
+      <section className="mx-auto max-w-[1224px] px-5 md:px-10 pb-[80px] lg:px-[108px]">
         <p className="text-[18px] leading-[1.8] text-[#0C0C0C] md:text-[20px]">
           {CLOSING_STATEMENT}
         </p>

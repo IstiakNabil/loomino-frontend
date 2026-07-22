@@ -1,7 +1,7 @@
 function Newsletter() {
   return (
-    <div className="w-[390px]">
-      <h3 className="text-[28px] font-medium text-white">
+    <div className="w-full lg:w-[390px]">
+      <h3 className="text-[22px] font-medium text-white lg:text-[28px]">
         Join Our Club, Get 15% Off Your Birthday
       </h3>
 

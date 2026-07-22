@@ -28,22 +28,22 @@ function CartItem({ item }: CartItemProps) {
 
   return (
     <div
-      className={`border-b border-[#DCD3C3] py-8 transition-opacity ${
+      className={`border-b border-[#DCD3C3] py-5 transition-opacity lg:py-8 ${
         removeMutation.isPending ? "opacity-50" : ""
       }`}
     >
-      <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[minmax(0,1fr)_140px_180px_140px]">
+      <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[minmax(0,1fr)_140px_180px_140px] md:gap-6">
         {/* Product */}
-        <div className="flex items-start gap-6">
+        <div className="flex items-start gap-4 lg:gap-6">
           <Link to={`/products/${item.slug}`}>
             {imageUrl ? (
               <img
                 src={imageUrl}
                 alt={item.product}
-                className="h-[160px] w-[140px] object-cover"
+                className="h-[115px] w-[90px] object-cover lg:h-[160px] lg:w-[140px]"
               />
             ) : (
-              <div className="h-[160px] w-[140px] bg-[#E4DACA]" />
+              <div className="h-[115px] w-[90px] bg-[#E4DACA] lg:h-[160px] lg:w-[140px]" />
             )}
           </Link>
 
@@ -51,16 +51,16 @@ function CartItem({ item }: CartItemProps) {
             <div>
               <Link
                 to={`/products/${item.slug}`}
-                className="text-[20px] font-medium hover:underline"
+                className="text-[14px] font-semibold hover:underline lg:text-[20px] lg:font-medium"
               >
                 {item.product}
               </Link>
 
-              <p className="mt-4 text-[16px] text-[#555555]">
+              <p className="mt-2 text-[13px] text-[#555555] lg:mt-4 lg:text-[16px]">
                 Size: {item.size}
               </p>
 
-              <p className="mt-2 text-[16px] text-[#555555]">
+              <p className="mt-1 text-[13px] text-[#555555] lg:mt-2 lg:text-[16px]">
                 Color: {item.color}
               </p>
             </div>
@@ -78,7 +78,7 @@ function CartItem({ item }: CartItemProps) {
         </div>
 
         {/* Price */}
-        <p className="text-[18px] md:text-center">
+        <p className="text-[14px] md:text-center md:text-[18px]">
           <span className="mr-2 text-[14px] text-[#888888] md:hidden">
             Price:
           </span>
@@ -100,7 +100,7 @@ function CartItem({ item }: CartItemProps) {
         </div>
 
         {/* Total */}
-        <p className="text-[18px] font-medium md:text-right">
+        <p className="text-[14px] font-medium md:text-right md:text-[18px]">
           <span className="mr-2 text-[14px] font-normal text-[#888888] md:hidden">
             Total:
           </span>

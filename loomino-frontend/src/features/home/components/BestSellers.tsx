@@ -8,10 +8,10 @@ function BestSellers() {
   const products = data?.slice(0, 3) ?? [];
 
   return (
-    <section className="py-16">
+    <section className="py-10 lg:py-16">
       <Container>
-    <div className="mb-10 flex items-center justify-between">
-      <h2 className="text-[32px] font-semibold text-[#1E1E1E]">
+    <div className="mb-6 flex items-center justify-between lg:mb-10">
+      <h2 className="text-[22px] font-semibold text-[#1E1E1E] lg:text-[32px]">
         Best Sellers
       </h2>
 
@@ -23,7 +23,7 @@ function BestSellers() {
       </Link>
     </div>
 
-    <div className="grid grid-cols-3 gap-6">
+    <div className="grid grid-cols-2 gap-4 [&>*:nth-child(3)]:hidden lg:grid-cols-3 lg:gap-6 lg:[&>*:nth-child(3)]:block">
       {products.map((product) => (
         <ProductCard
           key={product.id}

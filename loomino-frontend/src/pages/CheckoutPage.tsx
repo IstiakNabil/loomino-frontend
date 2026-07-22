@@ -61,13 +61,13 @@ function CheckoutPage() {
   return (
     <div className="grid min-h-[calc(100vh-110px)] grid-cols-1 lg:grid-cols-[1fr_540px]">
       {/* Left: steps */}
-      <div className="bg-[#F1E9DC] px-6 py-12 md:px-[80px] lg:px-[96px]">
+      <div className="bg-[#F1E9DC] px-5 py-8 md:px-[80px] md:py-12 lg:px-[96px]">
         <CheckoutSteps
           current={checkout.step}
           onNavigate={checkout.setStep}
         />
 
-        <div className="mt-10 max-w-[640px]">
+        <div className="mt-8 max-w-[640px] lg:mt-10">
           {checkout.step === "info" && (
             <CheckoutInfoStep
               onComplete={(address) => {

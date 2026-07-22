@@ -33,7 +33,7 @@ function OrderDetailPage() {
 
   if (isError || !order) {
     return (
-      <div className="font-loomino flex min-h-[60vh] flex-col items-center justify-center gap-6 bg-[#F0E6D8] px-6 text-center">
+      <div className="font-loomino flex min-h-[60vh] flex-col items-center justify-center gap-6 bg-[#F0E6D8] px-5 md:px-10 text-center">
         <p className="text-[18px] text-[#606060]">
           We couldn't find this order.
         </p>
@@ -56,7 +56,7 @@ function OrderDetailPage() {
 
   return (
     <div className="font-loomino min-h-[calc(100vh-110px)] bg-[#F0E6D8]">
-      <div className="mx-auto max-w-[960px] px-6 py-[56px] md:px-[108px]">
+      <div className="mx-auto max-w-[960px] px-5 md:px-10 py-[56px] lg:px-[108px]">
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },

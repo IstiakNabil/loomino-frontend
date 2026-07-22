@@ -109,7 +109,7 @@ function ProfileTab() {
       <button
         type="submit"
         disabled={updateProfile.isPending || !isDirty}
-        className="mt-8 h-[48px] w-[200px] bg-[#343E32] text-[14px] text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-8 h-10 w-full lg:h-[48px] lg:w-[200px] bg-[#343E32] text-[14px] text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {updateProfile.isPending
           ? "Saving..."

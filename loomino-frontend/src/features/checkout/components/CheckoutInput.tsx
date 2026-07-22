@@ -18,7 +18,7 @@ function CheckoutInput({
       <div className="relative">
         <input
           {...props}
-          className="h-[52px] w-full border border-[#B9AE97] bg-transparent px-4 text-[15px] outline-none transition placeholder:text-[#8B8271] focus:border-[#5B3A0E]"
+          className="h-10 w-full border border-[#B9AE97] bg-transparent px-4 text-[14px] outline-none transition placeholder:text-[#8B8271] focus:border-[#5B3A0E] lg:h-[52px] lg:text-[15px]"
         />
 
         {icon && (

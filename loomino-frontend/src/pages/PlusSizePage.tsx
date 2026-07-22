@@ -10,7 +10,7 @@ function PlusSizePage() {
 
   return (
     <div className="font-loomino min-h-[calc(100vh-110px)] bg-[#F0E6D8]">
-      <div className="mx-auto max-w-[1920px] px-6 pt-[32px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-5 md:px-10 pt-[32px] lg:px-[108px]">
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },
@@ -19,7 +19,7 @@ function PlusSizePage() {
         />
       </div>
 
-      <div className="mx-auto max-w-[1920px] px-6 pb-[80px] md:px-[108px]">
+      <div className="mx-auto max-w-[1920px] px-5 md:px-10 pb-[80px] lg:px-[108px]">
         <h1 className="text-[32px] font-semibold capitalize leading-[1.4] text-[#0C0C0C]">
           Plus Size
         </h1>
@@ -61,7 +61,7 @@ function PlusSizePage() {
               </p>
               <Link
                 to="/shop"
-                className="mt-8 inline-flex h-[48px] w-[220px] items-center justify-center bg-[#343E32] text-[14px] text-white transition hover:opacity-90"
+                className="mt-8 inline-flex h-10 w-full max-w-[280px] items-center justify-center bg-[#343E32] lg:h-[48px] lg:w-[220px] text-[14px] text-white transition hover:opacity-90"
               >
                 Browse The Collection
               </Link>

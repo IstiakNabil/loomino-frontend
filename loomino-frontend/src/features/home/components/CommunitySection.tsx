@@ -37,25 +37,51 @@ const communityPosts = [
 
 function CommunitySection() {
   return (
-    <section className="bg-[#F0E6D8] py-20">
+    <section className="bg-[#F0E6D8] py-12 lg:py-20">
       <Container>
-        <h2 className="mb-10 text-[32px] font-semibold text-[#1E1E1E]">
+        <h2 className="mb-6 text-[22px] font-semibold text-[#1E1E1E] lg:mb-10 lg:text-[32px]">
           Loomino Community
         </h2>
 
-        {/* Figma "Follow Us" frame (1:2660): flush collage,
-            no gaps — big image 603 : right grid 621, tiles
-            310.5x375.5. Fluid so it fills the container at
-            any width while keeping those exact ratios. */}
-        <div className="flex items-stretch">
-          {/* Large Image */}
+        {/* Mobile — Figma frame 1:3643 (320x388): two flush
+            rows of 194, split 152/168 then 160/160. */}
+        <div className="flex flex-col lg:hidden">
+          <div className="flex aspect-[320/194] w-full">
+            <CommunityImage
+              image={communityPosts[1].image}
+              alt={communityPosts[1].alt}
+              className="min-w-0 flex-[152]"
+            />
+            <CommunityImage
+              image={communityPosts[2].image}
+              alt={communityPosts[2].alt}
+              className="min-w-0 flex-[168]"
+            />
+          </div>
+
+          <div className="flex aspect-[320/194] w-full">
+            <CommunityImage
+              image={communityPosts[3].image}
+              alt={communityPosts[3].alt}
+              className="min-w-0 flex-[160]"
+            />
+            <CommunityImage
+              image={communityPosts[4].image}
+              alt={communityPosts[4].alt}
+              className="min-w-0 flex-[160]"
+            />
+          </div>
+        </div>
+
+        {/* Desktop — Figma "Follow Us" frame (1:2660): flush
+            collage, big image 603 : right grid 621. */}
+        <div className="hidden items-stretch lg:flex">
           <CommunityImage
             image={communityPosts[0].image}
             alt={communityPosts[0].alt}
             className="aspect-[603/751] min-w-0 flex-[603]"
           />
 
-          {/* Right Grid — 2x2, edge to edge */}
           <div className="grid min-w-0 flex-[621] grid-cols-2">
             <CommunityImage
               image={communityPosts[1].image}

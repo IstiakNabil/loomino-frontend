@@ -6,7 +6,7 @@ function ShopHero() {
       <img
         src={shopHero}
         alt="Shop Hero"
-        className="h-[665px] w-full object-cover"
+        className="h-[480px] w-full object-cover lg:h-[665px]"
       />
     </section>
   );

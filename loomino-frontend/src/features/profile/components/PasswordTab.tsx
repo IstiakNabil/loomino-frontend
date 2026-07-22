@@ -94,7 +94,7 @@ function PasswordTab() {
           type="button"
           onClick={requestOtp}
           disabled={forgot.isPending}
-          className="mt-8 h-[48px] w-[240px] bg-[#343E32] text-[14px] text-white transition hover:opacity-90 disabled:opacity-50"
+          className="mt-8 h-10 w-full lg:h-[48px] lg:w-[240px] bg-[#343E32] text-[14px] text-white transition hover:opacity-90 disabled:opacity-50"
         >
           {forgot.isPending
             ? "Sending..."
@@ -134,7 +134,7 @@ function PasswordTab() {
             <button
               type="submit"
               disabled={reset.isPending}
-              className="h-[48px] w-[200px] bg-[#343E32] text-[14px] text-white transition hover:opacity-90 disabled:opacity-50"
+              className="h-10 w-full lg:h-[48px] lg:w-[200px] bg-[#343E32] text-[14px] text-white transition hover:opacity-90 disabled:opacity-50"
             >
               {reset.isPending
                 ? "Updating..."

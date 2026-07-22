@@ -109,7 +109,7 @@ function AddressForm({
         <button
           type="submit"
           disabled={submitting}
-          className="h-[48px] w-[180px] bg-[#343E32] text-[14px] text-white transition hover:opacity-90 disabled:opacity-50"
+          className="h-10 w-full lg:h-[48px] lg:w-[180px] bg-[#343E32] text-[14px] text-white transition hover:opacity-90 disabled:opacity-50"
         >
           {submitting
             ? "Saving..."
@@ -121,7 +121,7 @@ function AddressForm({
         <button
           type="button"
           onClick={onCancel}
-          className="h-[48px] w-[120px] border border-[#4C300D] text-[14px] text-[#4C300D] transition hover:bg-[#E7DFCF]"
+          className="h-10 w-full lg:h-[48px] lg:w-[120px] border border-[#4C300D] text-[14px] text-[#4C300D] transition hover:bg-[#E7DFCF]"
         >
           Cancel
         </button>

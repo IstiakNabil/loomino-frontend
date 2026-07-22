@@ -39,25 +39,25 @@ const footerLinks: { title: string; links: FooterLink[] }[] =
 
 function FooterLinks() {
   return (
-    <div className="flex gap-20">
+    <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:flex lg:gap-20">
       {footerLinks.map((column) => (
         <div key={column.title}>
-          <h4 className="mb-6 text-[22px] font-medium text-white">
+          <h4 className="mb-4 text-[18px] font-medium text-white lg:mb-6 lg:text-[22px]">
             {column.title}
           </h4>
 
-          <ul className="space-y-4">
+          <ul className="space-y-3 lg:space-y-4">
             {column.links.map((link) => (
               <li key={link.label}>
                 {link.to ? (
                   <Link
                     to={link.to}
-                    className="cursor-pointer text-base text-white transition hover:text-[#D4B483]"
+                    className="cursor-pointer text-sm text-white transition hover:text-[#D4B483] lg:text-base"
                   >
                     {link.label}
                   </Link>
                 ) : (
-                  <span className="cursor-pointer text-base text-white transition hover:text-[#D4B483]">
+                  <span className="cursor-pointer text-sm text-white transition hover:text-[#D4B483] lg:text-base">
                     {link.label}
                   </span>
                 )}

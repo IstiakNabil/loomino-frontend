@@ -12,7 +12,7 @@ function WishlistPage() {
 
   return (
     <div className="font-loomino min-h-[calc(100vh-110px)] bg-[#F0E6D8]">
-      <div className="mx-auto max-w-[1224px] px-6 py-[56px] md:px-[108px]">
+      <div className="mx-auto max-w-[1224px] px-5 md:px-10 py-[56px] lg:px-[108px]">
         {/* Header (centered, per design) */}
         <div className="text-center">
           <h1 className="text-[20px] font-bold capitalize text-[#0C0C0C]">
@@ -51,7 +51,7 @@ function WishlistPage() {
               </p>
               <Link
                 to="/shop"
-                className="mt-8 inline-flex h-[48px] w-[220px] items-center justify-center bg-[#343E32] text-[14px] text-white transition hover:opacity-90"
+                className="mt-8 inline-flex h-10 w-full max-w-[280px] items-center justify-center bg-[#343E32] lg:h-[48px] lg:w-[220px] text-[14px] text-white transition hover:opacity-90"
               >
                 Explore Collection
               </Link>

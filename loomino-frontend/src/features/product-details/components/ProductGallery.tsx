@@ -12,13 +12,13 @@ function ProductGallery({ images }: ProductGalleryProps) {
     images[selectedImage] ?? images[0];
 
   return (
-    <div className="flex h-[512px] w-full items-start">
+    <div className="flex h-auto w-full flex-col-reverse items-start gap-4 lg:h-[512px] lg:flex-row lg:gap-0">
   {/* Thumbnail Viewport */}
   <div
     ref={thumbnailContainerRef}
-    className="h-[512px] w-[125px] overflow-y-auto scrollbar-hide"
+    className="w-full overflow-x-auto scrollbar-hide lg:h-[512px] lg:w-[125px] lg:overflow-y-auto"
   >
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-row gap-4 lg:flex-col">
       {images.map((image, index) => (
         <button
           key={image.id}

@@ -12,10 +12,10 @@ function SustainabilitySection() {
     sustainabilityImage;
 
   return (
-    <section className="mt-24">
+    <section className="mt-12 lg:mt-24">
   <Container className="px-0">
       <div
-        className="flex h-[430px] items-center justify-end bg-cover bg-center pr-[120px]"
+        className="flex h-[408px] items-center justify-center bg-cover bg-center px-5 lg:h-[430px] lg:justify-end lg:px-0 lg:pr-[120px]"
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}

@@ -14,10 +14,10 @@ function MidweekSection() {
   if (products && items.length === 0) return null;
 
   return (
-    <section className="w-full bg-[#F0E6D8] py-20">
-      <div className="mx-auto w-full max-w-[1920px] px-[108px]">
-      <div className="mb-10 flex items-center justify-between">
-        <h2 className="text-[32px] font-semibold text-[#1E1E1E]">
+    <section className="w-full bg-[#F0E6D8] py-12 lg:py-20">
+      <div className="mx-auto w-full max-w-[1920px] px-5 md:px-10 lg:px-[108px]">
+      <div className="mb-6 flex items-center justify-between lg:mb-10">
+        <h2 className="text-[22px] font-semibold text-[#1E1E1E] lg:text-[32px]">
           Modiweek
         </h2>
         <Link
@@ -28,7 +28,7 @@ function MidweekSection() {
         </Link>
       </div>
 
-      <div className="flex gap-6">
+      <div className="-mx-5 flex gap-4 overflow-x-auto px-5 pb-2 md:-mx-10 md:px-10 lg:mx-0 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-0">
         {items.map((product) => (
           <MidweekCard key={product.id} product={product} />
         ))}

@@ -12,7 +12,7 @@ interface MidweekCardProps {
 
 function MidweekCard({ product }: MidweekCardProps) {
   return (
-    <article className="group w-[288px] shrink-0 transition-opacity duration-200 hover:opacity-95">
+    <article className="group w-[152px] shrink-0 transition-opacity duration-200 hover:opacity-95 lg:w-[288px]">
       <Link
         to={`/products/${product.slug}`}
         className="relative block w-full overflow-hidden"

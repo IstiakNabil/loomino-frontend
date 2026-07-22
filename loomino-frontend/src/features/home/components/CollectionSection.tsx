@@ -32,13 +32,13 @@ function CollectionSection() {
   };
 
   return (
-    <section className="w-full bg-[#F0E6D8] py-20">
+    <section className="w-full bg-[#F0E6D8] py-12 lg:py-20">
       <Container>
-        <h2 className="mb-10 text-[32px] font-semibold text-[#0C0C0C]">
+        <h2 className="mb-6 text-[22px] font-semibold text-[#0C0C0C] lg:mb-10 lg:text-[32px]">
           Collection
         </h2>
 
-        <div className="flex gap-6">
+        <div className="flex gap-4 lg:gap-6">
           {/* Left column — tall then short. The 144px gap is a
               spacer (not Tailwind `gap`) so it scales with the
               column width via aspect-ratio, same as the tiles —
