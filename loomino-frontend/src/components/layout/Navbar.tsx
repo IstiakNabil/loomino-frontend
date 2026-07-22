@@ -15,7 +15,7 @@ function CountBadge({ count }: { count: number }) {
   if (count <= 0) return null;
 
   return (
-    <span className="absolute -right-2 -top-2 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[#4C300D] px-1 text-[11px] font-semibold leading-none text-white">
+    <span className="absolute -right-3 -top-3 flex h-[28px] min-w-[28px] items-center justify-center rounded-full bg-[#4C300D] px-1.5 text-[14px] font-semibold leading-none text-white lg:-right-2 lg:-top-2 lg:h-[18px] lg:min-w-[18px] lg:px-1 lg:text-[11px]">
       {count > 99 ? "99+" : count}
     </span>
   );
@@ -24,11 +24,10 @@ function CountBadge({ count }: { count: number }) {
 /**
  * Site header.
  *
- * Mobile follows the Figma mobile HEADER (360x64): 20px
- * gutters, hamburger + search on the left, logo centred,
- * heart + bag on the right, 24px icons.
- *
- * Desktop keeps the 110px bar with the hover mega-menus.
+ * Mobile is based on the Figma mobile HEADER (360x64) but
+ * scaled up 2x (128px bar, 48px icons, 276x80 logo) per
+ * request, for better visibility on phones. Desktop keeps
+ * the original 110px bar with the hover mega-menus.
  *
  * The two layouts share one DOM tree — only the pieces that
  * genuinely differ are toggled — so the cart and wishlist
@@ -44,7 +43,7 @@ function Navbar() {
   const wishlistCount = wishlist?.length ?? 0;
 
   return (
-    <nav className="font-loomino relative h-16 bg-[#A88548] lg:h-[110px]">
+    <nav className="font-loomino relative h-32 bg-[#A88548] lg:h-[110px]">
       <SearchOverlay
         open={searchOpen}
         onClose={() => setSearchOpen(false)}
@@ -57,13 +56,13 @@ function Navbar() {
 
       <div className="mx-auto flex h-full max-w-[1920px] items-center justify-between px-5 md:px-10 lg:px-[108px]">
         {/* Left cluster — mobile only */}
-        <div className="flex items-center gap-2 text-white lg:hidden">
+        <div className="flex items-center gap-3 text-white lg:hidden">
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
-            <Menu size={24} strokeWidth={1.8} />
+            <Menu className="h-12 w-12" strokeWidth={1.8} />
           </button>
 
           <button
@@ -71,16 +70,17 @@ function Navbar() {
             onClick={() => setSearchOpen(true)}
             aria-label="Search"
           >
-            <Search size={24} strokeWidth={1.8} />
+            <Search className="h-12 w-12" strokeWidth={1.8} />
           </button>
         </div>
 
-        {/* Logo — 138x40 on mobile, 259x86 on desktop */}
+        {/* Logo — 276x80 on mobile (2x the Figma 138x40),
+            259x86 on desktop */}
         <Link to="/" aria-label="Loomino home">
           <img
             src={logo}
             alt="Loomino"
-            className="h-10 w-[138px] object-contain lg:h-[86px] lg:w-[259px]"
+            className="h-20 w-[276px] object-contain lg:h-[86px] lg:w-[259px]"
           />
         </Link>
 
@@ -97,7 +97,7 @@ function Navbar() {
         </ul>
 
         {/* Right cluster */}
-        <div className="flex items-center gap-2 text-white lg:gap-6">
+        <div className="flex items-center gap-3 text-white lg:gap-6">
           {/* Search sits on the left on mobile, here on desktop */}
           <button
             type="button"
@@ -105,7 +105,7 @@ function Navbar() {
             aria-label="Search"
             className="hidden lg:block"
           >
-            <Search size={24} strokeWidth={1.8} />
+            <Search className="h-6 w-6" strokeWidth={1.8} />
           </button>
 
           <div className="hidden lg:block">
@@ -113,12 +113,12 @@ function Navbar() {
           </div>
 
           <Link to="/wishlist" aria-label="Wishlist" className="relative">
-            <Heart size={24} strokeWidth={1.8} />
+            <Heart className="h-12 w-12 lg:h-6 lg:w-6" strokeWidth={1.8} />
             <CountBadge count={wishlistCount} />
           </Link>
 
           <Link to="/cart" aria-label="Cart" className="relative">
-            <ShoppingBag size={24} strokeWidth={1.8} />
+            <ShoppingBag className="h-12 w-12 lg:h-6 lg:w-6" strokeWidth={1.8} />
             <CountBadge count={cartCount} />
           </Link>
         </div>
