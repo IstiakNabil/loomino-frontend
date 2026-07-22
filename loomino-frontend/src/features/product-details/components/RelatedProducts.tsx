@@ -38,6 +38,7 @@ function RelatedProducts({
     <ProductCard
       key={product.id}
       product={product}
+      showQuickAdd
     />
   ))}
 </div>

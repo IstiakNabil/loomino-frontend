@@ -5,7 +5,7 @@ import Container from "@/components/layout/Container";
 
 function Breadcrumb() {
   return (
-    <section className="bg-[#F7F0E5] py-6">
+    <section className="bg-[#F0E6D8] py-6">
       <Container>
         <div className="flex items-center gap-3 text-sm">
           <Link

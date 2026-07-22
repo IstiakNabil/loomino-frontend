@@ -37,49 +37,48 @@ const communityPosts = [
 
 function CommunitySection() {
   return (
-    <section className="bg-[#F7F0E5] py-20">
+    <section className="bg-[#F0E6D8] py-20">
       <Container>
         <h2 className="mb-10 text-[32px] font-semibold text-[#1E1E1E]">
           Loomino Community
         </h2>
 
-        <div className="flex gap-3">
+        {/* Figma "Follow Us" frame (1:2660): flush collage,
+            no gaps — big image 603 : right grid 621, tiles
+            310.5x375.5. Fluid so it fills the container at
+            any width while keeping those exact ratios. */}
+        <div className="flex items-stretch">
           {/* Large Image */}
           <CommunityImage
             image={communityPosts[0].image}
             alt={communityPosts[0].alt}
-            width={620}
-            height={700}
+            className="aspect-[603/751] min-w-0 flex-[603]"
           />
 
-          {/* Right Grid */}
-          <div className="grid grid-cols-2 gap-3">
+          {/* Right Grid — 2x2, edge to edge */}
+          <div className="grid min-w-0 flex-[621] grid-cols-2">
             <CommunityImage
               image={communityPosts[1].image}
               alt={communityPosts[1].alt}
-              width={300}
-              height={344}
+              className="aspect-[621/751] w-full"
             />
 
             <CommunityImage
               image={communityPosts[2].image}
               alt={communityPosts[2].alt}
-              width={300}
-              height={344}
+              className="aspect-[621/751] w-full"
             />
 
             <CommunityImage
               image={communityPosts[3].image}
               alt={communityPosts[3].alt}
-              width={300}
-              height={344}
+              className="aspect-[621/751] w-full"
             />
 
             <CommunityImage
               image={communityPosts[4].image}
               alt={communityPosts[4].alt}
-              width={300}
-              height={344}
+              className="aspect-[621/751] w-full"
             />
           </div>
         </div>

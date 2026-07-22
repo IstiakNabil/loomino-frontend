@@ -1,24 +1,16 @@
 interface CommunityImageProps {
   image: string;
   alt: string;
-  width: number;
-  height: number;
+  className?: string;
 }
 
 function CommunityImage({
   image,
   alt,
-  width,
-  height,
+  className = "",
 }: CommunityImageProps) {
   return (
-    <div
-      className="overflow-hidden"
-      style={{
-        width,
-        height,
-      }}
-    >
+    <div className={`overflow-hidden ${className}`}>
       <img
         src={image}
         alt={alt}

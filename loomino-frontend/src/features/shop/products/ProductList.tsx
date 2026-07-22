@@ -77,6 +77,7 @@ function ProductList({
               <ProductCard
                 key={product.id}
                 product={product}
+                showQuickAdd
               />
             ))}
           </div>

@@ -10,20 +10,29 @@ interface AddToCartButtonProps {
   productName?: string;
   size?: number;
   className?: string;
+  /**
+   * "icon" — small circular bag icon (Midweek cards, wherever
+   * it sits next to the wishlist heart on its own).
+   * "bar" — full-width text bar meant to sit along the bottom
+   * edge of a product image and be revealed on hover.
+   */
+  variant?: "icon" | "bar";
 }
 
 /**
  * Reusable "quick add" button for product cards that don't have
- * their own size/color picker (Best Sellers, Modiweek). Adds the
- * product's default variant directly. Guests are sent to /login,
- * same as the wishlist button. Disabled if the product has no
- * default variant (e.g. no stock/no variants configured).
+ * their own size/color picker (Best Sellers, Modiweek, Shop).
+ * Adds the product's default variant directly. Guests are sent
+ * to /login, same as the wishlist button. Disabled if the
+ * product has no default variant (e.g. no stock/no variants
+ * configured).
  */
 function AddToCartButton({
   variantId,
   productName = "product",
   size = 18,
   className = "",
+  variant = "icon",
 }: AddToCartButtonProps) {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
@@ -48,6 +57,25 @@ function AddToCartButton({
   };
 
   const disabled = addMutation.isPending || variantId == null;
+
+  if (variant === "bar") {
+    return (
+      <button
+        type="button"
+        onClick={handleClick}
+        disabled={disabled}
+        aria-label={`Add ${productName} to cart`}
+        title={
+          variantId == null
+            ? "Currently unavailable"
+            : `Add ${productName} to cart`
+        }
+        className={`flex w-full items-center justify-center bg-[#4C300D] py-3 text-[14px] font-medium capitalize text-white transition-colors hover:bg-[#3A2409] disabled:cursor-not-allowed disabled:bg-[#4C300D]/60 ${className}`}
+      >
+        {addMutation.isPending ? "Adding..." : "Add To Cart"}
+      </button>
+    );
+  }
 
   return (
     <button

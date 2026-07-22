@@ -81,6 +81,7 @@ function PlusSizePage() {
                   <ProductCard
                     key={product.id}
                     product={product}
+                    showQuickAdd
                   />
                 ))}
               </div>

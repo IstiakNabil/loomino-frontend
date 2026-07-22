@@ -40,17 +40,20 @@ function ProductCard({ product, showQuickAdd = false }: ProductCardProps) {
                 size={24}
               />
             </div>
-
-            {showQuickAdd && (
-              <div className="rounded-full bg-white/80 p-2 backdrop-blur-sm">
-                <AddToCartButton
-                  variantId={product.default_variant_id}
-                  productName={product.name}
-                  size={24}
-                />
-              </div>
-            )}
           </div>
+
+          {/* Hidden until hover, then slides up over the bottom
+              edge of the image — same pattern as the reference
+              screenshot. */}
+          {showQuickAdd && (
+            <div className="absolute inset-x-0 bottom-0 translate-y-full opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+              <AddToCartButton
+                variantId={product.default_variant_id}
+                productName={product.name}
+                variant="bar"
+              />
+            </div>
+          )}
         </div>
 
         {/* Product Info */}

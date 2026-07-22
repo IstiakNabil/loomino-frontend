@@ -30,10 +30,16 @@ function MidweekCard({ product }: MidweekCardProps) {
             productName={product.name}
             size={18}
           />
+        </div>
+
+        {/* Hidden until hover, then slides up over the bottom
+            edge of the image — same pattern as every other
+            product card on the site. */}
+        <div className="absolute inset-x-0 bottom-0 translate-y-full opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
           <AddToCartButton
             variantId={product.default_variant_id}
             productName={product.name}
-            size={18}
+            variant="bar"
           />
         </div>
       </Link>

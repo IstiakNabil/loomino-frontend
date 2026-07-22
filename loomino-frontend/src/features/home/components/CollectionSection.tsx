@@ -32,7 +32,7 @@ function CollectionSection() {
   };
 
   return (
-    <section className="w-full bg-[#F7F0E5] py-20">
+    <section className="w-full bg-[#F0E6D8] py-20">
       <Container>
         <h2 className="mb-10 text-[32px] font-semibold text-[#0C0C0C]">
           Collection

@@ -14,7 +14,7 @@ function MidweekSection() {
   if (products && items.length === 0) return null;
 
   return (
-    <section className="w-full bg-[#F7F0E5] py-20">
+    <section className="w-full bg-[#F0E6D8] py-20">
       <div className="mx-auto w-full max-w-[1920px] px-[108px]">
       <div className="mb-10 flex items-center justify-between">
         <h2 className="text-[32px] font-semibold text-[#1E1E1E]">

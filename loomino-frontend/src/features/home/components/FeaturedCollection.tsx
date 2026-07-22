@@ -2,7 +2,7 @@ import Container from "@/components/layout/Container";
 
 function FeaturedCollection() {
   return (
-    <section className="bg-[#F7F0E5] py-20">
+    <section className="bg-[#F0E6D8] py-20">
       <Container className="text-center">
         <p className="mb-4 text-xs uppercase tracking-[0.35em] text-[#9A8564]">
           Featured Collection
