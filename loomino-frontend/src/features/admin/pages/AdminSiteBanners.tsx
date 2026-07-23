@@ -83,6 +83,7 @@ function groupLabel(key: string): string {
     key === "sustainability"
   )
     return "Homepage";
+  if (key.startsWith("shop_")) return "Shop Page";
   if (key.startsWith("modiweek_")) return "Modiweek Page";
   if (key.startsWith("sustainability_")) return "Sustainability Page";
   return "Other";
@@ -101,7 +102,7 @@ function AdminSiteBanners() {
   }
   // Keep a stable, sensible section order rather than
   // whatever order Object/Map iteration happens to produce.
-  const orderedGroups = ["Homepage", "Mega Menu", "Modiweek Page", "Sustainability Page"]
+  const orderedGroups = ["Homepage", "Shop Page", "Mega Menu", "Modiweek Page", "Sustainability Page"]
     .filter((g) => groups.has(g))
     .map((g) => [g, groups.get(g)!] as const);
 
