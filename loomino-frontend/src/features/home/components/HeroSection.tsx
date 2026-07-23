@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { getMediaUrl } from "@/lib/utils";
-import fallbackHeroImage from "@/assets/images/hero/hero.png";
+import fallbackHeroImage from "@/assets/images/hero/hero-banner.jpg";
 import { useSiteBanners } from "../hooks/useSiteBanners";
 
 // The homepage hero always loops through exactly these 3 fixed
@@ -69,7 +69,7 @@ function HeroSection() {
 
           <Link
             to="/shop?is_new_arrival=true"
-            className="mt-6 flex h-[40px] w-[152px] items-center justify-center gap-1 bg-[#4C300D] p-4 text-[14px] capitalize text-[#F2F2F7] transition hover:opacity-90 lg:mt-[27px] lg:w-[184px]"
+            className="absolute inset-x-5 bottom-8 flex h-[40px] w-[152px] items-center justify-center gap-1 bg-[#4C300D] p-4 text-[14px] capitalize text-[#F2F2F7] transition hover:opacity-90 lg:static lg:mt-[27px] lg:w-[184px]"
             style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600 }}
           >
             New In
