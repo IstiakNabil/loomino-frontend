@@ -15,7 +15,7 @@ function CountBadge({ count }: { count: number }) {
   if (count <= 0) return null;
 
   return (
-    <span className="absolute -right-4 -top-4 flex h-9 min-w-9 items-center justify-center rounded-full bg-[#4C300D] px-2 text-[18px] font-semibold leading-none text-white lg:-right-2 lg:-top-2 lg:h-[18px] lg:min-w-[18px] lg:px-1 lg:text-[11px]">
+    <span className="absolute -right-2 -top-2 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[#4C300D] px-1 text-[11px] font-semibold leading-none text-white">
       {count > 99 ? "99+" : count}
     </span>
   );
@@ -24,11 +24,9 @@ function CountBadge({ count }: { count: number }) {
 /**
  * Site header.
  *
- * Mobile is based on the Figma mobile HEADER (360x64) but
- * scaled up ~2.6x total (166px bar, 62px icons, 359x104
- * logo) — an initial 2x pass, then another +30% on top, per
- * request, for better visibility on phones. Desktop keeps
- * the original 110px bar with the hover mega-menus.
+ * Mobile follows the Figma mobile HEADER exactly: 64px bar,
+ * 138x40 logo, 24px icons. Desktop keeps the 110px bar with
+ * the hover mega-menus.
  *
  * The two layouts share one DOM tree — only the pieces that
  * genuinely differ are toggled — so the cart and wishlist
@@ -44,7 +42,7 @@ function Navbar() {
   const wishlistCount = wishlist?.length ?? 0;
 
   return (
-    <nav className="font-loomino relative h-[166px] bg-[#A88548] lg:h-[110px]">
+    <nav className="font-loomino relative h-16 bg-[#A88548] lg:h-[110px]">
       <SearchOverlay
         open={searchOpen}
         onClose={() => setSearchOpen(false)}
@@ -63,7 +61,7 @@ function Navbar() {
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
-            <Menu className="h-[62px] w-[62px]" strokeWidth={1.8} />
+            <Menu className="h-6 w-6" strokeWidth={1.8} />
           </button>
 
           <button
@@ -71,17 +69,16 @@ function Navbar() {
             onClick={() => setSearchOpen(true)}
             aria-label="Search"
           >
-            <Search className="h-[62px] w-[62px]" strokeWidth={1.8} />
+            <Search className="h-6 w-6" strokeWidth={1.8} />
           </button>
         </div>
 
-        {/* Logo — 359x104 on mobile (~2.6x the Figma 138x40),
-            259x86 on desktop */}
+        {/* Logo — 138x40 on mobile, 259x86 on desktop */}
         <Link to="/" aria-label="Loomino home">
           <img
             src={logo}
             alt="Loomino"
-            className="h-[104px] w-[359px] object-contain lg:h-[86px] lg:w-[259px]"
+            className="h-10 w-[138px] object-contain lg:h-[86px] lg:w-[259px]"
           />
         </Link>
 
@@ -114,12 +111,12 @@ function Navbar() {
           </div>
 
           <Link to="/wishlist" aria-label="Wishlist" className="relative">
-            <Heart className="h-[62px] w-[62px] lg:h-6 lg:w-6" strokeWidth={1.8} />
+            <Heart className="h-6 w-6" strokeWidth={1.8} />
             <CountBadge count={wishlistCount} />
           </Link>
 
           <Link to="/cart" aria-label="Cart" className="relative">
-            <ShoppingBag className="h-[62px] w-[62px] lg:h-6 lg:w-6" strokeWidth={1.8} />
+            <ShoppingBag className="h-6 w-6" strokeWidth={1.8} />
             <CountBadge count={cartCount} />
           </Link>
         </div>
