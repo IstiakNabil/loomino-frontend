@@ -25,7 +25,7 @@ function Newsletter() {
 
         <span>
           By Submitting your email, you agree to receive
-          advertising emails from Modimal.
+          advertising emails from Loomino.
         </span>
       </label>
     </div>
