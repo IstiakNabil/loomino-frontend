@@ -16,19 +16,39 @@ const HERO_SLIDE_KEYS = [
   "hero_slide_3",
 ] as const;
 
+// Optional phone-cropped counterpart for each slide (CMS > Site
+// Banners > Homepage > "Hero — Slide N (Mobile)"), so admins can
+// upload a portrait-friendly crop instead of the desktop photo
+// getting cut off by object-cover on narrow screens. Falls back
+// to the same slide's desktop image if it hasn't been set.
+const HERO_SLIDE_MOBILE_KEYS = [
+  "hero_slide_1_mobile",
+  "hero_slide_2_mobile",
+  "hero_slide_3_mobile",
+] as const;
+
 const ROTATE_MS = 6000;
 
 function HeroSection() {
   const { data: banners } = useSiteBanners();
   const [index, setIndex] = useState(0);
 
-  const slideImages = HERO_SLIDE_KEYS.map((key) => {
+  const findImage = (key: string) => {
     const banner = banners?.find((b) => b.key === key);
-    return (
-      (banner?.image ? getMediaUrl(banner.image) : null) ??
-      fallbackHeroImage
-    );
-  });
+    return banner?.image ? getMediaUrl(banner.image) : null;
+  };
+
+  const slideImages = HERO_SLIDE_KEYS.map(
+    (key) => findImage(key) ?? fallbackHeroImage,
+  );
+
+  // Each mobile slide falls back to that same slide's desktop
+  // image (not the bundled default) if no mobile crop has been
+  // uploaded yet, so it never regresses below what's already
+  // showing today.
+  const mobileSlideImages = HERO_SLIDE_MOBILE_KEYS.map(
+    (key, i) => findImage(key) ?? slideImages[i],
+  );
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -39,8 +59,24 @@ function HeroSection() {
 
   return (
     <section className="font-loomino relative h-[544px] w-full overflow-hidden lg:h-[660px]">
+      {/* Mobile-cropped track */}
       <div
-        className="absolute inset-0 flex h-full w-full transition-transform duration-700 ease-in-out"
+        className="absolute inset-0 flex h-full w-full transition-transform duration-700 ease-in-out lg:hidden"
+        style={{ transform: `translateX(-${index * 100}%)` }}
+      >
+        {mobileSlideImages.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`Hero slide ${i + 1}`}
+            className="h-full w-full shrink-0 object-cover"
+          />
+        ))}
+      </div>
+
+      {/* Desktop track */}
+      <div
+        className="absolute inset-0 hidden h-full w-full transition-transform duration-700 ease-in-out lg:flex"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         {slideImages.map((src, i) => (
