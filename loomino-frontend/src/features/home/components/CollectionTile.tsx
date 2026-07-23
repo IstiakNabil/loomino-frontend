@@ -45,11 +45,11 @@ function CollectionTile({
 
       <div
         className={`absolute ${
-          buttonAlign === "right" ? "right-4" : "left-4"
+          buttonAlign === "right" ? "right-2 lg:right-4" : "left-2 lg:left-4"
         }`}
         style={{ bottom: buttonBottom }}
       >
-        <span className="flex h-[40px] min-w-[160px] items-center justify-center bg-white px-4 text-[14px] capitalize text-[#0C0C0C] transition group-hover:bg-[#4C300D] group-hover:text-white">
+        <span className="flex h-7 min-w-[88px] items-center justify-center bg-white px-3 text-[11px] capitalize text-[#0C0C0C] transition group-hover:bg-[#4C300D] group-hover:text-white lg:h-[40px] lg:min-w-[160px] lg:px-4 lg:text-[14px]">
           {title}
         </span>
       </div>
