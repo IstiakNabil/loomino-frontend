@@ -13,13 +13,24 @@ function RootLayout() {
   return (
     <div className="min-h-screen">
       <WelcomeModal />
-      <AnnouncementBar />
-      <Navbar />
-      <main>
-        <Outlet />
-      </main>
 
-      <Footer />
+      {/* Scaled separately so it still renders above the
+          (unscaled) Navbar in the stacking order. */}
+      <div className="mobile-scale-130">
+        <AnnouncementBar />
+      </div>
+
+      <Navbar />
+
+      {/* Everything below the navbar scales up 30% on mobile —
+          see .mobile-scale-130 in index.css. */}
+      <div className="mobile-scale-130">
+        <main>
+          <Outlet />
+        </main>
+
+        <Footer />
+      </div>
 
       <Toaster position="top-right" richColors closeButton />
     </div>

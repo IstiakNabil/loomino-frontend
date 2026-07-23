@@ -140,6 +140,19 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Mobile page content is rendered 30% larger than the base
+   mobile layout — images, text, spacing, everything scales
+   together via `zoom` rather than resizing every value by
+   hand. Applied to everything except the Navbar (and the
+   welcome modal / toasts, which stay outside this wrapper so
+   overlays keep their normal on-screen size). Only active
+   below the `lg` breakpoint (1024px) — desktop is untouched. */
+@media (max-width: 1023.98px) {
+  .mobile-scale-130 {
+    zoom: 1.3;
+  }
+}
 /* Loomino design-system font (Montserrat), scoped via utility.
    Apply .font-loomino on a page root to opt that subtree into
    the designed typeface without changing the global font. */
