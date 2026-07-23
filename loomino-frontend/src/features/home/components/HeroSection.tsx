@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { getMediaUrl } from "@/lib/utils";
-import fallbackHeroImage from "@/assets/images/hero/hero-banner.jpg";
+import fallbackHeroImage from "@/assets/images/hero/hero.png";
 import { useSiteBanners } from "../hooks/useSiteBanners";
 
 // The homepage hero always loops through exactly these 3 fixed
