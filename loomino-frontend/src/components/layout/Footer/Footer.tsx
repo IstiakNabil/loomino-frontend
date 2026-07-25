@@ -2,6 +2,7 @@ import Container from "../Container";
 
 import Newsletter from "./Newsletter";
 import FooterLinks from "./FooterLinks";
+import FooterContact from "./FooterContact";
 import SocialLinks from "./SocialLinks";
 import FooterBottom from "./FooterBottom";
 
@@ -16,6 +17,8 @@ function Footer() {
           </div>
 
           <FooterLinks />
+
+          <FooterContact />
         </div>
 
         <FooterBottom />

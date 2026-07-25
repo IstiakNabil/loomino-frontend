@@ -7,9 +7,21 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// The active display currency symbol. Defaults to the bundled
+// constant and is overridden at runtime from Site Settings via
+// setCurrencySymbol(), so every formatPrice() call site picks up
+// the admin-configured symbol without needing to be a hook.
+let activeCurrencySymbol = CURRENCY_SYMBOL;
+
+export function setCurrencySymbol(symbol: string | undefined | null) {
+  if (symbol && symbol.trim()) {
+    activeCurrencySymbol = symbol.trim();
+  }
+}
+
 /**
  * Formats a backend price (DRF Decimal → string) for display.
- * formatPrice("485.00") → "$485.00"
+ * formatPrice("485.00") → "৳485.00"
  */
 export function formatPrice(
   value: string | number | null | undefined,
@@ -18,10 +30,10 @@ export function formatPrice(
     typeof value === "string" ? parseFloat(value) : value;
 
   if (amount == null || Number.isNaN(amount)) {
-    return `${CURRENCY_SYMBOL}0.00`;
+    return `${activeCurrencySymbol}0.00`;
   }
 
-  return `${CURRENCY_SYMBOL}${amount.toFixed(2)}`;
+  return `${activeCurrencySymbol}${amount.toFixed(2)}`;
 }
 
 /** Resolves a backend media path to an absolute URL. */

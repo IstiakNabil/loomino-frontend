@@ -95,4 +95,10 @@ export const ADMIN_NAV: AdminNavSection[] = [
       },
     ],
   },
+  {
+    heading: "System",
+    items: [
+      { label: "Settings", to: "/admin/settings", icon: "settings" },
+    ],
+  },
 ];

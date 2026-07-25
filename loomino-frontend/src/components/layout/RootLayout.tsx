@@ -5,10 +5,15 @@ import AnnouncementBar from "./AnnouncementBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer/Footer";
 import WelcomeModal from "@/features/welcome/WelcomeModal";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 import { useScrollToHash } from "@/app/hooks/useScrollToHash";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 function RootLayout() {
   useScrollToHash();
+  // Load global settings once, app-wide — also pushes the
+  // configured currency symbol into formatPrice().
+  useSiteSettings();
 
   return (
     <div className="min-h-screen">
@@ -33,6 +38,7 @@ function RootLayout() {
       </div>
 
       <Toaster position="top-right" richColors closeButton />
+      <WhatsAppButton />
     </div>
   );
 }

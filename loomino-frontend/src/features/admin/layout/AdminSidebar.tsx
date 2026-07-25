@@ -9,6 +9,7 @@ import {
   Mail,
   Send,
   LayoutGrid,
+  Settings,
   ChevronDown,
   LogOut,
 } from "lucide-react";
@@ -33,6 +34,7 @@ const ICONS: Record<
   mail: Mail,
   send: Send,
   layout: LayoutGrid,
+  settings: Settings,
 };
 
 function AdminSidebar() {

@@ -2,14 +2,20 @@ import { useNavigate } from "react-router-dom";
 
 import { formatPrice } from "@/lib/utils";
 import { useCart } from "../hooks/useCart";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 function OrderSummary() {
   const { data } = useCart();
+  const { data: settings } = useSiteSettings();
   const navigate = useNavigate();
 
   if (!data || data.items.length === 0) {
     return null;
   }
+
+  const shipping = Number(settings?.delivery_charge ?? 0);
+  const subtotal = Number(data.total_price);
+  const total = subtotal + shipping;
 
   return (
     <div className="mt-8 flex justify-end lg:mt-[48px]">
@@ -26,7 +32,9 @@ function OrderSummary() {
 
           <div className="flex items-center justify-between">
             <span className="text-[15px] lg:text-[20px]">Shipping</span>
-            <span className="text-[15px] lg:text-[20px]">Free</span>
+            <span className="text-[15px] lg:text-[20px]">
+              {shipping > 0 ? formatPrice(shipping) : "Free"}
+            </span>
           </div>
 
           <div className="flex items-center justify-between">
@@ -34,7 +42,7 @@ function OrderSummary() {
               Total Orders:
             </span>
             <span className="text-[15px] font-medium lg:text-[20px]">
-              {formatPrice(data.total_price)}
+              {formatPrice(total)}
             </span>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 
 import { formatPrice, getMediaUrl } from "@/lib/utils";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import type { CartResponse } from "@/features/cart/types/cart";
 import type { ApplyCouponResponse } from "../types/checkout";
 
@@ -17,12 +18,15 @@ function CheckoutSummary({
   cart,
   coupon,
 }: CheckoutSummaryProps) {
+  const { data: settings } = useSiteSettings();
+
   const discount = coupon
     ? parseFloat(coupon.discount)
     : 0;
 
   const subtotal = parseFloat(cart.total_price);
-  const total = subtotal - discount;
+  const shipping = Number(settings?.delivery_charge ?? 0);
+  const total = subtotal + shipping - discount;
 
   return (
     <div className="bg-[#EDEBE6] px-5 py-8 md:px-8 md:py-12 lg:px-16 lg:py-16">
@@ -98,7 +102,7 @@ function CheckoutSummary({
 
         <div className="flex justify-between text-[15px] lg:text-[18px]">
           <span>Shipping</span>
-          <span>Free</span>
+          <span>{shipping > 0 ? formatPrice(shipping) : "Free"}</span>
         </div>
 
         <div className="flex justify-between text-[15px] font-medium lg:text-[18px]">
