@@ -44,7 +44,7 @@ function ProductGallery({ images }: ProductGalleryProps) {
   <div className="w-4 shrink-0" />
 
   {/* Main Image */}
-  <div className="h-[512px] w-[459px] overflow-hidden">
+  <div className="aspect-[459/512] w-full overflow-hidden lg:h-[512px] lg:w-[459px]">
     <img
       src={activeImage?.image}
       alt={activeImage?.image_type ?? "Product"}

@@ -52,7 +52,7 @@ function ForgotPasswordForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[392px]"
+      className="w-full lg:w-[392px]"
       noValidate
     >
       {/* Heading */}

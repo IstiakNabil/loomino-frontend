@@ -11,7 +11,7 @@ const footerLinks: { title: string; links: FooterLink[] }[] =
       title: "About Loomino",
       links: [
         { label: "Collection", to: "/shop" },
-        { label: "Sustainability", to: "/sustainability" },
+        { label: "Our Story", to: "/sustainability" },
         { label: "Privacy Policy" },
         { label: "Support System" },
         { label: "Terms & Condition" },

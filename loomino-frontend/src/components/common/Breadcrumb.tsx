@@ -17,23 +17,23 @@ interface BreadcrumbProps {
  */
 function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <nav className="flex items-center" aria-label="Breadcrumb">
+    <nav className="flex flex-wrap items-center" aria-label="Breadcrumb">
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
 
         return (
           <Fragment key={`${item.label}-${index}`}>
-            <div className="px-4 py-1">
+            <div className="px-1.5 py-1 lg:px-4">
               {item.to && !isLast ? (
                 <Link
                   to={item.to}
-                  className="text-[18px] capitalize leading-[1.8] text-[#4C300D] hover:underline"
+                  className="text-[13px] capitalize leading-[1.8] text-[#4C300D] hover:underline lg:text-[18px]"
                 >
                   {item.label}
                 </Link>
               ) : (
                 <span
-                  className={`text-[18px] capitalize leading-[1.8] ${
+                  className={`text-[13px] capitalize leading-[1.8] lg:text-[18px] ${
                     isLast
                       ? "text-[#0C0C0C]"
                       : "text-[#4C300D]"
@@ -45,7 +45,7 @@ function Breadcrumb({ items }: BreadcrumbProps) {
             </div>
 
             {!isLast && (
-              <span className="px-2 text-[18px] text-[#606060]">
+              <span className="px-1 text-[13px] text-[#606060] lg:px-2 lg:text-[18px]">
                 /
               </span>
             )}

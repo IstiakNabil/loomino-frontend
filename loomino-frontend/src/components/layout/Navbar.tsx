@@ -91,7 +91,7 @@ function Navbar() {
           <NavItem label="New In" to="/shop" />
           <NavItem label="Modiweek" to="/modiweek" />
           <NavItem label="Plus Size" to="/plus-size" />
-          <NavItem label="Sustainability" to="/sustainability" />
+          <NavItem label="Our Story" to="/sustainability" />
         </ul>
 
         {/* Right cluster */}

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Images, Upload } from "lucide-react";
@@ -9,8 +9,13 @@ import AdminPageHeader from "../components/AdminPageHeader";
 import {
   listSiteBanners,
   updateSiteBanner,
+  updateSiteBannerText,
 } from "../services/cms.service";
 import type { AdminSiteBanner } from "../types/cms";
+
+// Slots that carry editable copy in addition to an image. Any
+// key listed here renders a text-editing form under its image.
+const TEXT_SLOT_KEYS = new Set<string>(["our_story"]);
 
 function BannerCard({ banner }: { banner: AdminSiteBanner }) {
   const queryClient = useQueryClient();
@@ -71,6 +76,105 @@ function BannerCard({ banner }: { banner: AdminSiteBanner }) {
         <Upload size={14} />
         {update.isPending ? "Uploading…" : "Change Image"}
       </button>
+
+      {TEXT_SLOT_KEYS.has(banner.key) && (
+        <BannerTextForm banner={banner} />
+      )}
+    </div>
+  );
+}
+
+/**
+ * Editable copy for text-carrying slots (Our Story). Sits below
+ * the image controls; saves independently of the image.
+ */
+function BannerTextForm({ banner }: { banner: AdminSiteBanner }) {
+  const queryClient = useQueryClient();
+  const [eyebrow, setEyebrow] = useState(banner.eyebrow);
+  const [heading, setHeading] = useState(banner.heading);
+  const [body, setBody] = useState(banner.body);
+  const [ctaLabel, setCtaLabel] = useState(banner.cta_label);
+
+  const save = useMutation({
+    mutationFn: () =>
+      updateSiteBannerText(banner.key, {
+        eyebrow,
+        heading,
+        body,
+        cta_label: ctaLabel,
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["admin", "site-banners"],
+      });
+      toast.success(`${banner.label} text updated.`);
+    },
+    onError: (e) =>
+      toast.error(getApiErrorMessage(e, "Couldn't update text.")),
+  });
+
+  const fieldClass =
+    "w-full rounded-lg border border-[#D8CDB8] bg-white px-3 py-2 text-[13px] text-[#2C2418] outline-none transition focus:border-[#6B5E48]";
+
+  return (
+    <div className="mt-4 space-y-2 border-t border-[#EFE9DE] pt-4">
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-[#A89A80]">
+          Eyebrow
+        </span>
+        <input
+          value={eyebrow}
+          onChange={(e) => setEyebrow(e.target.value)}
+          className={fieldClass}
+          placeholder="OUR STORY"
+        />
+      </label>
+
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-[#A89A80]">
+          Heading
+        </span>
+        <input
+          value={heading}
+          onChange={(e) => setHeading(e.target.value)}
+          className={fieldClass}
+          placeholder="The Essence of Loomino"
+        />
+      </label>
+
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-[#A89A80]">
+          Body
+        </span>
+        <textarea
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          rows={4}
+          className={`${fieldClass} resize-y`}
+          placeholder="We celebrate curated craftsmanship…"
+        />
+      </label>
+
+      <label className="block">
+        <span className="mb-1 block text-[11px] font-medium uppercase tracking-wide text-[#A89A80]">
+          Button Label
+        </span>
+        <input
+          value={ctaLabel}
+          onChange={(e) => setCtaLabel(e.target.value)}
+          className={fieldClass}
+          placeholder="Learn More"
+        />
+      </label>
+
+      <button
+        type="button"
+        onClick={() => save.mutate()}
+        disabled={save.isPending}
+        className="inline-flex h-[36px] w-full items-center justify-center rounded-lg bg-[#343E32] text-[13px] font-medium text-white transition hover:opacity-90 disabled:opacity-50"
+      >
+        {save.isPending ? "Saving…" : "Save Text"}
+      </button>
     </div>
   );
 }
@@ -80,7 +184,8 @@ function groupLabel(key: string): string {
   if (
     key.startsWith("collection_") ||
     key.startsWith("hero_slide_") ||
-    key === "sustainability"
+    key === "sustainability" ||
+    key === "our_story"
   )
     return "Homepage";
   if (key.startsWith("shop_")) return "Shop Page";

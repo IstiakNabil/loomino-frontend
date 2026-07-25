@@ -24,8 +24,7 @@ function SustainabilityPage() {
         <Breadcrumb
           items={[
             { label: "Home", to: "/" },
-            { label: "Sustainability" },
-            { label: "Mission" },
+            { label: "Our Story" },
           ]}
         />
       </div>

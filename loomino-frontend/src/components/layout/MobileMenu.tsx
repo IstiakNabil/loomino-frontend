@@ -29,7 +29,7 @@ const PRIMARY_LINKS = [
   { label: "New In", to: "/shop" },
   { label: "Modiweek", to: "/modiweek" },
   { label: "Plus Size", to: "/plus-size" },
-  { label: "Sustainability", to: "/sustainability" },
+  { label: "Our Story", to: "/sustainability" },
 ];
 
 const SECONDARY_LINKS = [

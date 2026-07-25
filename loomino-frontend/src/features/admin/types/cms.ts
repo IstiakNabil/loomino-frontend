@@ -29,6 +29,7 @@ export type SiteBannerKey =
   | "collection_saree"
   | "collection_kameez"
   | "sustainability"
+  | "our_story"
   | "hero_slide_1"
   | "hero_slide_2"
   | "hero_slide_3"
@@ -63,5 +64,16 @@ export interface AdminSiteBanner {
   key: SiteBannerKey;
   label: string;
   image: string | null;
+  eyebrow: string;
+  heading: string;
+  body: string;
+  cta_label: string;
   updated_at: string;
+}
+
+export interface SiteBannerTextPayload {
+  eyebrow?: string;
+  heading?: string;
+  body?: string;
+  cta_label?: string;
 }

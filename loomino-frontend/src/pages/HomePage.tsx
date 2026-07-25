@@ -4,7 +4,7 @@ import HeroSection from "@/features/home/components/HeroSection";
 import FeaturedCollection from "@/features/home/components/FeaturedCollection";
 import CollectionSection from "@/features/home/components/CollectionSection";
 import MidweekSection from "@/features/home/components/MidweekSection";
-import SustainabilitySection from "@/features/home/components/SustainabilitySection";
+import OurStorySection from "@/features/home/components/OurStorySection";
 import CommunitySection from "@/features/home/components/CommunitySection";
 
 function HomePage() {
@@ -15,7 +15,7 @@ return (
     <BestSellers />
     <CollectionSection />
     <MidweekSection />
-    <SustainabilitySection />
+    <OurStorySection />
     <CommunitySection />
   </>
 );

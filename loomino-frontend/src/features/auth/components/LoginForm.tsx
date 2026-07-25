@@ -70,11 +70,11 @@ function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[392px]"
+      className="w-full lg:w-[392px]"
       noValidate
     >
       {/* Heading */}
-      <h1 className="mb-10 text-center text-[32px] font-semibold">
+      <h1 className="mb-6 text-center text-[24px] font-semibold lg:mb-10 lg:text-[32px]">
         Log In
       </h1>
 
@@ -102,7 +102,7 @@ function LoginForm() {
       {/* Forgot Password */}
       <Link
         to="/forgot-password"
-        className="mt-4 inline-block text-[18px] text-[#6F4E37] hover:underline"
+        className="mt-4 inline-block text-[14px] text-[#6F4E37] hover:underline lg:text-[18px]"
       >
         Forgot Your Password?
       </Link>
@@ -111,7 +111,7 @@ function LoginForm() {
       <button
         type="submit"
         disabled={loginMutation.isPending}
-        className="mt-8 h-[52px] w-full bg-[#5B3A0E] text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-6 h-10 w-full bg-[#5B3A0E] text-[14px] text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 lg:mt-8 lg:h-[52px] lg:text-[16px]"
       >
         {loginMutation.isPending
           ? "Logging In..."
@@ -119,13 +119,13 @@ function LoginForm() {
       </button>
 
       {/* Divider */}
-      <p className="my-8 text-center text-[20px]">Or</p>
+      <p className="my-6 text-center text-[16px] lg:my-8 lg:text-[20px]">Or</p>
 
       {/* Social Login Placeholder */}
       <SocialLogin />
 
       {/* Register */}
-      <p className="mt-10 text-center text-[18px]">
+      <p className="mt-6 text-center text-[14px] lg:mt-10 lg:text-[18px]">
         New To Loomino?{" "}
         <Link
           to="/register"

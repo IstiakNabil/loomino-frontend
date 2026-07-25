@@ -4,6 +4,7 @@ import type {
   AdminOfferBanner,
   OfferBannerPayload,
   AdminSiteBanner,
+  SiteBannerTextPayload,
 } from "../types/cms";
 
 function unwrap<T>(data: unknown): T[] {
@@ -116,5 +117,18 @@ export async function updateSiteBanner(
   const res = await api.patch(`${SITE_BANNERS}${key}/`, body, {
     headers: { "Content-Type": undefined },
   });
+  return res.data;
+}
+
+/**
+ * Update the editable copy on a text-carrying slot (e.g. the
+ * Our Story band). Sent as JSON — no file involved — so it
+ * doesn't touch the image on that slot.
+ */
+export async function updateSiteBannerText(
+  key: string,
+  payload: SiteBannerTextPayload,
+): Promise<AdminSiteBanner> {
+  const res = await api.patch(`${SITE_BANNERS}${key}/`, payload);
   return res.data;
 }
