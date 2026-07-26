@@ -45,9 +45,9 @@ function MidweekCard({ product }: MidweekCardProps) {
       </Link>
 
       <Link to={`/products/${product.slug}`} className="block">
-        {product.brand && (
+        {product.product_type && (
           <p className="mt-4 truncate text-[13px] font-bold capitalize text-[#0C0C0C]">
-            {product.brand}
+            {product.product_type}
           </p>
         )}
         <p className="mt-1 truncate text-[13px] font-medium text-[#1E1E1E] group-hover:underline">

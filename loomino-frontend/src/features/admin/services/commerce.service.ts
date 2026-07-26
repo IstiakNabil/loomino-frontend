@@ -4,7 +4,7 @@ import type {
   AdminProduct,
   AdminProductDetail,
   ProductPayload,
-  AdminBrand,
+  AdminType,
   VariantPayload,
   AdminVariant,
   AdminReview,
@@ -53,9 +53,9 @@ export async function updateProduct(
   return res.data;
 }
 
-export async function listBrands(): Promise<AdminBrand[]> {
-  const res = await api.get("/products/brands/");
-  return unwrap<AdminBrand>(res.data);
+export async function listTypes(): Promise<AdminType[]> {
+  const res = await api.get("/products/types/");
+  return unwrap<AdminType>(res.data);
 }
 
 export async function toggleProductActive(

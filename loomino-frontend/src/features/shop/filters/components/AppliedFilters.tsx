@@ -1,13 +1,13 @@
 interface AppliedFiltersProps {
   filters: {
     category: string;
-    brand: string;
+    product_type: string;
     color: string;
     size: string;
   };
 
   onRemoveFilter: (
-    key: "category" | "brand" | "color" | "size",
+    key: "category" | "product_type" | "color" | "size",
   ) => void;
 }
 
@@ -21,8 +21,8 @@ function AppliedFilters({
       value: filters.category,
     },
     {
-      key: "brand" as const,
-      value: filters.brand,
+      key: "product_type" as const,
+      value: filters.product_type,
     },
     {
       key: "color" as const,

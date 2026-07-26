@@ -31,7 +31,7 @@ const product = {
   price: "140.00",
   thumbnail: "/media/trench.jpg",
   category: "Jackets",
-  brand: "Loomino",
+  product_type: "Loomino",
   is_featured: false,
   is_new_arrival: false,
   in_stock: true,

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { listCategories } from "../services/catalog.service";
-import { listBrands } from "../services/commerce.service";
+import { listAdminTypes } from "../services/media.service";
 import AdminButton from "./AdminButton";
 import SectionToggle from "./SectionToggle";
 import ProductImageManager from "./ProductImageManager";
@@ -23,7 +23,7 @@ interface ProductFormProps {
 const EMPTY: ProductPayload = {
   name: "",
   category: null,
-  brand: null,
+  product_type: null,
   short_description: "",
   description: "",
   fitting: "",
@@ -50,9 +50,19 @@ function ProductForm({
     queryKey: ["admin", "categories"],
     queryFn: listCategories,
   });
-  const { data: brands } = useQuery({
-    queryKey: ["admin", "brands"],
-    queryFn: listBrands,
+  const { data: types } = useQuery({
+    queryKey: ["admin", "types"],
+    queryFn: listAdminTypes,
+  });
+
+  // Types filtered down to the selected Category, same
+  // dependency as the Shop All filter — a Type with no
+  // categories assigned is treated as unrestricted (always
+  // shown), and with no category picked yet, show everything.
+  const availableTypes = (types ?? []).filter((t) => {
+    if (!form.category) return true;
+    if (!t.categories || t.categories.length === 0) return true;
+    return t.categories.includes(form.category);
   });
 
   useEffect(() => {
@@ -60,7 +70,7 @@ function ProductForm({
       setForm({
         name: initial.name,
         category: initial.category,
-        brand: initial.brand,
+        product_type: initial.product_type,
         short_description: initial.short_description ?? "",
         description: initial.description ?? "",
         fitting: initial.fitting ?? "",
@@ -84,6 +94,20 @@ function ProductForm({
     key: K,
     value: ProductPayload[K],
   ) => setForm((f) => ({ ...f, [key]: value }));
+
+  // If the category changes to something the currently-selected
+  // Type isn't linked to, clear the Type rather than leave a
+  // stale, now-invalid selection in place.
+  useEffect(() => {
+    if (form.product_type == null) return;
+    const stillValid = availableTypes.some(
+      (t) => t.id === form.product_type,
+    );
+    if (!stillValid) {
+      setForm((f) => ({ ...f, product_type: null }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.category, types]);
 
   const submit = () => {
     if (!form.name.trim()) {
@@ -150,23 +174,23 @@ function ProductForm({
         </label>
 
         <label className="block">
-          <span className={label}>Brand</span>
+          <span className={label}>Type</span>
           <select
             className={input}
-            value={form.brand ?? ""}
+            value={form.product_type ?? ""}
             onChange={(e) =>
               set(
-                "brand",
+                "product_type",
                 e.target.value
                   ? Number(e.target.value)
                   : null,
               )
             }
           >
-            <option value="">No brand</option>
-            {(brands ?? []).map((b) => (
-              <option key={b.id} value={b.id}>
-                {b.name}
+            <option value="">No type</option>
+            {availableTypes.map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.name}
               </option>
             ))}
           </select>

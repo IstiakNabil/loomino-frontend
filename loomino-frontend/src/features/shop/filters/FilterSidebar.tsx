@@ -8,7 +8,7 @@ import PriceFilter from "./components/PriceFilter";
 import SizeOption from "./components/SizeOption";
 
 import type {
-  Brand,
+  Type,
   Category,
   Color,
   Size,
@@ -41,15 +41,17 @@ interface FilterSidebarProps {
   setOrdering: (value: string) => void;
 
   categories: Category[];
-  brands: Brand[];
+  types: Type[];
+  /** True while types are refetching after a category change. */
+  typesLoading?: boolean;
   colors: Color[];
   sizes: Size[];
 
   selectedCategory: string;
   setCategory: (value: string) => void;
 
-  selectedBrand: string;
-  setBrand: (value: string) => void;
+  selectedType: string;
+  setType: (value: string) => void;
 
   selectedColor: string;
   setColor: (value: string) => void;
@@ -64,13 +66,13 @@ setMaxPrice: (value: string) => void;
 
   filters: {
   category: string;
-  brand: string;
+  product_type: string;
   color: string;
   size: string;
 };
 
 removeFilter: (
-  key: "category" | "brand" | "color" | "size"
+  key: "category" | "product_type" | "color" | "size"
 ) => void;
 }
 
@@ -78,14 +80,15 @@ function FilterSidebar({
   ordering,
   setOrdering,
   categories,
-  brands,
+  types,
+  typesLoading,
   colors,
   sizes,
   selectedCategory,
   setCategory,
 
-  selectedBrand,
-  setBrand,
+  selectedType,
+  setType,
 
   selectedColor,
   setColor,
@@ -165,14 +168,19 @@ setMaxPrice,
 </FilterSection>
 
   <FilterGroup
-  title="Brand"
-  items={brands.map((brand) => ({
-    id: brand.id,
-    label: brand.name,
-    value: brand.slug,
+  title="Type"
+  items={types.map((type) => ({
+    id: type.id,
+    label: type.name,
+    value: type.slug,
   }))}
-  selected={selectedBrand}
-  onChange={setBrand}
+  selected={selectedType}
+  onChange={setType}
+  emptyLabel={
+    typesLoading
+      ? "Loading…"
+      : "No types for this category"
+  }
 />
 
 

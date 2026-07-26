@@ -9,7 +9,8 @@ import useFilters from "@/features/shop/hooks/useFilters";
 
 function ShopPage() {
     const productState = useProducts();
-    const filterState = useFilters();
+    // Types depend on the currently-selected Category.
+    const filterState = useFilters(productState.filters.category);
   return (
     <>
       <Breadcrumb />
@@ -25,7 +26,8 @@ function ShopPage() {
   }
 
   categories={filterState.categories}
-  brands={filterState.brands}
+  types={filterState.types}
+  typesLoading={filterState.typesLoading}
   colors={filterState.colors}
   sizes={filterState.sizes}
 
@@ -34,9 +36,9 @@ function ShopPage() {
     productState.applyFilter("category", value)
   }
 
-  selectedBrand={productState.filters.brand}
-  setBrand={(value) =>
-    productState.applyFilter("brand", value)
+  selectedType={productState.filters.product_type}
+  setType={(value) =>
+    productState.applyFilter("product_type", value)
   }
 
   selectedColor={productState.filters.color}

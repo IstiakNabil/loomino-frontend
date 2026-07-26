@@ -88,7 +88,7 @@ export interface AdminSubscriber {
  * Product shape returned by the admin detail endpoint and
  * accepted by create/update. Note: unlike AdminProduct (the
  * list shape, where `category` is the category NAME), here
- * `category`/`brand` are foreign-key ids.
+ * `category`/`product_type` are foreign-key ids.
  */
 export interface AdminProductDetail {
   id: number;
@@ -96,8 +96,8 @@ export interface AdminProductDetail {
   slug: string;
   category: number | null;
   category_name: string | null;
-  brand: number | null;
-  brand_name: string | null;
+  product_type: number | null;
+  type_name: string | null;
   short_description: string;
   description: string;
   fitting: string;
@@ -117,7 +117,7 @@ export interface AdminProductDetail {
 export interface ProductPayload {
   name: string;
   category: number | null;
-  brand: number | null;
+  product_type: number | null;
   short_description: string;
   description: string;
   fitting: string;
@@ -131,10 +131,11 @@ export interface ProductPayload {
   is_active: boolean;
 }
 
-export interface AdminBrand {
+export interface AdminType {
   id: number;
   name: string;
   slug: string;
+  categories: number[];
 }
 
 /** Payload accepted by POST/PATCH /products/variants/admin/ */
@@ -166,8 +167,8 @@ export const IMAGE_TYPES = [
   "gallery",
 ] as const;
 
-/** Brand row from /products/brands/manage/ */
-export interface AdminBrandDetail {
+/** Type row from /products/types/manage/ */
+export interface AdminTypeDetail {
   id: number;
   name: string;
   slug: string;
@@ -175,5 +176,7 @@ export interface AdminBrandDetail {
   logo_url: string | null;
   description: string | null;
   is_active: boolean;
+  /** Category IDs this type is linked to. */
+  categories: number[];
   product_count: number;
 }

@@ -59,9 +59,9 @@ function ProductCard({ product, showQuickAdd = false }: ProductCardProps) {
         {/* Product Info */}
         <div className="mt-3 flex items-center justify-between gap-2 px-0 lg:gap-3 lg:px-2">
           <div className="flex min-w-0 flex-1 flex-col gap-2">
-            {product.brand && (
+            {product.product_type && (
               <p className="truncate text-[14px] font-bold capitalize leading-[1.4] text-[#0C0C0C] lg:text-[16px]">
-                {product.brand}
+                {product.product_type}
               </p>
             )}
             <p className="truncate text-[14px] font-normal capitalize leading-[1.4] text-[#0C0C0C] lg:text-[16px] lg:leading-[1.8]">

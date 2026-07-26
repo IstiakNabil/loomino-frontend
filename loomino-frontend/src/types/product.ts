@@ -5,7 +5,7 @@ export interface Product {
   price: string;
   thumbnail: string;
   category: string;
-  brand: string;
+  product_type: string;
   is_featured: boolean;
   is_new_arrival: boolean;
   in_stock: boolean;
@@ -63,7 +63,7 @@ export interface ProductDetail {
   regular_price: string;
   discount_price: string | null;
   category: string;
-  brand: string;
+  product_type: string;
   is_featured: boolean;
   is_new_arrival: boolean;
   average_rating: number;

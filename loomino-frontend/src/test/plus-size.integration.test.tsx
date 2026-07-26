@@ -38,7 +38,7 @@ const product = {
   price: "1800.00",
   thumbnail: "/media/shirt.jpg",
   category: "Shirts",
-  brand: "Loomino",
+  product_type: "Loomino",
   is_featured: false,
   is_new_arrival: false,
   in_stock: true,

@@ -24,7 +24,7 @@ function OnSalePage() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[496px_1fr]">
           <div>
             <h1 className="mb-6 text-[32px] font-semibold capitalize leading-[1.4] text-[#0C0C0C]">
-              The On Sale Edit
+              On Sale
             </h1>
             <CmsImage
               bannerKey="on_sale_feature"

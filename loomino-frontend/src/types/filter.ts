@@ -5,7 +5,7 @@ export interface Category {
   product_count: number;
 }
 
-export interface Brand {
+export interface Type {
   id: number;
   name: string;
   slug: string;

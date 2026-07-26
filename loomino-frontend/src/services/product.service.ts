@@ -16,7 +16,7 @@ interface GetProductsParams {
 
   category?: string;
 
-  brand?: string;
+  product_type?: string;
 
   color?: string;
 

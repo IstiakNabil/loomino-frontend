@@ -12,7 +12,7 @@ const initialFilters = {
   ordering: searchParams.get("ordering") || "-created_at",
   search: searchParams.get("search") || "",
   category: searchParams.get("category") || "",
-  brand: searchParams.get("brand") || "",
+  product_type: searchParams.get("product_type") || "",
   color: searchParams.get("color") || "",
   size: searchParams.get("size") || "",
   min_price: searchParams.get("min_price") || "",
@@ -39,7 +39,7 @@ useEffect(() => {
     ordering: searchParams.get("ordering") || "-created_at",
     search: searchParams.get("search") || "",
     category: searchParams.get("category") || "",
-    brand: searchParams.get("brand") || "",
+    product_type: searchParams.get("product_type") || "",
     color: searchParams.get("color") || "",
     size: searchParams.get("size") || "",
     min_price: searchParams.get("min_price") || "",
@@ -105,7 +105,7 @@ function loadNextPage() {
 }
 
 function removeFilter(
-  key: "category" | "brand" | "color" | "size",
+  key: "category" | "product_type" | "color" | "size",
 ) {
   updateFilter(key, "");
 }
@@ -118,7 +118,7 @@ function resetFilters() {
 
     category: "",
 
-    brand: "",
+    product_type: "",
 
     color: "",
 

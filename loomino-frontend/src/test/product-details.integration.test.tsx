@@ -55,7 +55,7 @@ const product = {
   regular_price: "160.00",
   discount_price: null,
   category: "Tops",
-  brand: "Loomino",
+  product_type: "Loomino",
   is_featured: false,
   is_new_arrival: false,
   average_rating: 4.5,
