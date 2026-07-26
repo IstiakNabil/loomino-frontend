@@ -49,7 +49,7 @@ function AdminProducts() {
     // The storefront reads these — refresh so a new product
     // shows up immediately without a hard reload.
     queryClient.invalidateQueries({ queryKey: ["products"] });
-    queryClient.invalidateQueries({ queryKey: ["modiweek"] });
+    queryClient.invalidateQueries({ queryKey: ["on-sale"] });
     queryClient.invalidateQueries({
       queryKey: ["best-sellers"],
     });

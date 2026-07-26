@@ -81,8 +81,8 @@ export async function getBestSellers(): Promise<Product[]> {
 }
 
 
-export async function getModiweekProducts(): Promise<Product[]> {
-  const response = await api.get("/products/modiweek/");
+export async function getOnSaleProducts(): Promise<Product[]> {
+  const response = await api.get("/products/on-sale/");
 
   const data = response.data;
   return Array.isArray(data) ? data : data.results;

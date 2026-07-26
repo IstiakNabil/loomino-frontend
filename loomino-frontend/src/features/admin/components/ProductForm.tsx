@@ -33,7 +33,7 @@ const EMPTY: ProductPayload = {
   discount_price: null,
   is_featured: false,
   is_new_arrival: false,
-  is_modiweek: false,
+  is_on_sale: false,
   is_active: true,
 };
 
@@ -71,7 +71,7 @@ function ProductForm({
         discount_price: initial.discount_price,
         is_featured: initial.is_featured,
         is_new_arrival: initial.is_new_arrival,
-        is_modiweek: initial.is_modiweek,
+        is_on_sale: initial.is_on_sale,
         is_active: initial.is_active,
       });
     } else {
@@ -335,10 +335,10 @@ function ProductForm({
             onChange={(v) => set("is_featured", v)}
           />
           <SectionToggle
-            label="Modiweek"
-            hint="Shows on the Modiweek page (/modiweek)"
-            checked={form.is_modiweek}
-            onChange={(v) => set("is_modiweek", v)}
+            label="On Sale"
+            hint="Shows on the On Sale page (/on-sale)"
+            checked={form.is_on_sale}
+            onChange={(v) => set("is_on_sale", v)}
           />
           <SectionToggle
             label="Active"

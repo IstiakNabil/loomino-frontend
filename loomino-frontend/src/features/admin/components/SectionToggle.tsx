@@ -6,7 +6,7 @@ interface SectionToggleProps {
 }
 
 /**
- * A storefront-section toggle (New In / Featured / Modiweek /
+ * A storefront-section toggle (New In / Featured / On Sale /
  * Active). The hint explains exactly where the product will
  * appear so admins know what each flag does.
  */

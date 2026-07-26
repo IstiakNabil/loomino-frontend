@@ -107,7 +107,7 @@ export interface AdminProductDetail {
   discount_price: string | null;
   is_featured: boolean;
   is_new_arrival: boolean;
-  is_modiweek: boolean;
+  is_on_sale: boolean;
   is_active: boolean;
   thumbnail: string | null;
   total_stock: number;
@@ -127,7 +127,7 @@ export interface ProductPayload {
   discount_price: string | null;
   is_featured: boolean;
   is_new_arrival: boolean;
-  is_modiweek: boolean;
+  is_on_sale: boolean;
   is_active: boolean;
 }
 

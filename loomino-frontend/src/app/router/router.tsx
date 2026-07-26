@@ -17,7 +17,7 @@ import ContactPage from "@/pages/ContactPage";
 import SustainabilityPage from "@/pages/SustainabilityPage";
 import BestSellersPage from "@/pages/BestSellersPage";
 import PlusSizePage from "@/pages/PlusSizePage";
-import ModiweekPage from "@/pages/ModiweekPage";
+import OnSalePage from "@/pages/OnSalePage";
 import ProfileTab from "@/features/profile/components/ProfileTab";
 import PasswordTab from "@/features/profile/components/PasswordTab";
 import AddressesTab from "@/features/profile/components/AddressesTab";
@@ -86,8 +86,13 @@ export const router = createBrowserRouter([
         element: <PlusSizePage />,
       },
       {
+        path: "on-sale",
+        element: <OnSalePage />,
+      },
+      {
+        // Old URL — redirect so existing bookmarks/links keep working.
         path: "modiweek",
-        element: <ModiweekPage />,
+        element: <Navigate to="/on-sale" replace />,
       },
       {
         path: "products/:slug",

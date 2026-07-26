@@ -44,9 +44,28 @@ function FaqAccordionItem({
 
       {isOpen && (
         <div className="px-6 pb-6">
-          <p className="text-[16px] leading-[1.8] text-[#0C0C0C]">
-            {item.answer}
-          </p>
+          {item.answer && (
+            <p className="text-[16px] leading-[1.8] text-[#0C0C0C]">
+              {item.answer}
+            </p>
+          )}
+
+          {item.options && item.options.length > 0 && (
+            <dl
+              className={`space-y-4 ${item.answer ? "mt-4" : ""}`}
+            >
+              {item.options.map((option) => (
+                <div key={option.label}>
+                  <dt className="text-[15px] font-semibold text-[#4C300D]">
+                    {option.label}
+                  </dt>
+                  <dd className="mt-1 text-[16px] leading-[1.8] text-[#0C0C0C]">
+                    {option.detail}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
         </div>
       )}
     </div>

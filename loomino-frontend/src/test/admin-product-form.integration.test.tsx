@@ -77,12 +77,12 @@ describe("Admin ProductForm", () => {
       "1500",
     );
 
-    // Tick New In and Modiweek
+    // Tick New In and On Sale
     await user.click(
       screen.getByRole("checkbox", { name: /new in/i }),
     );
     await user.click(
-      screen.getByRole("checkbox", { name: /modiweek/i }),
+      screen.getByRole("checkbox", { name: /on sale/i }),
     );
 
     await user.click(
@@ -98,7 +98,7 @@ describe("Admin ProductForm", () => {
       category: 3,
       regular_price: "1500",
       is_new_arrival: true,
-      is_modiweek: true,
+      is_on_sale: true,
       is_featured: false,
       is_active: true,
     });

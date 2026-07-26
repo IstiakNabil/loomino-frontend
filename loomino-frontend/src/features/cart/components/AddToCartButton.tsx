@@ -21,7 +21,7 @@ interface AddToCartButtonProps {
 
 /**
  * Reusable "quick add" button for product cards that don't have
- * their own size/color picker (Best Sellers, Modiweek, Shop).
+ * their own size/color picker (Best Sellers, On Sale, Shop).
  * Adds the product's default variant directly. Guests are sent
  * to /login, same as the wishlist button. Disabled if the
  * product has no default variant (e.g. no stock/no variants
@@ -70,7 +70,7 @@ function AddToCartButton({
             ? "Currently unavailable"
             : `Add ${productName} to cart`
         }
-        className={`flex w-full items-center justify-center bg-[#4C300D] py-3 text-[14px] font-medium capitalize text-white transition-colors hover:bg-[#3A2409] disabled:cursor-not-allowed disabled:bg-[#4C300D]/60 ${className}`}
+        className={`flex w-full items-center justify-center bg-[#343E32] py-3 text-[14px] font-medium capitalize text-white transition-colors hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
       >
         {addMutation.isPending ? "Adding..." : "Add To Cart"}
       </button>

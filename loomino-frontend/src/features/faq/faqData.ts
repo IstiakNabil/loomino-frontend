@@ -1,6 +1,17 @@
+export interface FaqOption {
+  label: string;
+  detail: string;
+}
+
 export interface FaqItem {
   question: string;
-  answer: string;
+  /** Plain-text answer. Optional when `options` is used instead. */
+  answer?: string;
+  /**
+   * Structured sub-items (e.g. care instructions broken out by
+   * fabric type) rendered as a labeled list under the answer.
+   */
+  options?: FaqOption[];
 }
 
 /**
@@ -39,9 +50,41 @@ export const FAQ_ITEMS: FaqItem[] = [
       "We offer product and body measurements on each of our product pages — just click on \"Size Guide\" to find your best fit. Measuring guides are included.",
   },
   {
-    question: "How do I take care of my Loomino pieces?",
+    question: "Fabric Care Info — how do I take care of my Loomino pieces?",
     answer:
-      "Care instructions are listed under \"Fabric & Care\" on every product page. In general, we recommend gentle machine washing and air drying to keep your pieces looking their best.",
+      "Every piece is different, so always check the care label sewn into the garment first — it overrides the general guidance below. When in doubt, a gentle hand wash and air dry is the safest option for anything embellished or delicately woven.",
+    options: [
+      {
+        label: "Cotton & Cotton Blends",
+        detail:
+          "Machine wash cold on a gentle cycle with similar colors, or hand wash. Line dry in shade to prevent fading. Warm iron on the reverse side if needed.",
+      },
+      {
+        label: "Silk & Georgette",
+        detail:
+          "Hand wash cold with a mild detergent, or dry clean for best results. Do not wring — gently press out water and lay flat to dry, away from direct sunlight. Iron on low heat with a pressing cloth.",
+      },
+      {
+        label: "Chiffon & Sheer Fabrics",
+        detail:
+          "Hand wash cold separately, as these fabrics are delicate and prone to snagging. Air dry on a padded hanger. Iron on the lowest heat setting, or steam instead of ironing directly.",
+      },
+      {
+        label: "Linen",
+        detail:
+          "Machine wash cold on a gentle cycle, or hand wash. Reshape while damp and air dry — linen wrinkles easily, so iron while still slightly damp for the smoothest finish.",
+      },
+      {
+        label: "Embellished, Embroidered & Sequined Pieces",
+        detail:
+          "Always hand wash cold, inside out, and never wring or twist. Air dry flat away from direct heat and sunlight. Do not iron directly over embellishments — iron the reverse side only, or steam from a distance.",
+      },
+      {
+        label: "General Dos & Don'ts",
+        detail:
+          "Do wash in cold water and air dry out of direct sunlight to preserve color. Don't use bleach, fabric softener, or a tumble dryer on any Loomino piece — these can damage embroidery, sequins, and delicate weaves over time.",
+      },
+    ],
   },
   {
     question: "Where and how do you manufacture your products?",

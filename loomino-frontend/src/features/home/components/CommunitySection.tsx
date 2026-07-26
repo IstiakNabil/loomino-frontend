@@ -4,38 +4,45 @@ import community3 from "@/assets/images/community/community-3.png";
 import community4 from "@/assets/images/community/community-4.jpg";
 import community5 from "@/assets/images/community/community-5.jpg";
 
+import { getMediaUrl } from "@/lib/utils";
 import Container from "@/components/layout/Container";
 import CommunityImage from "./CommunityImage";
+import { useSiteBanners } from "../hooks/useSiteBanners";
 
-const communityPosts = [
-  {
-    id: 1,
-    image: community1,
-    alt: "Community Post 1",
-  },
-  {
-    id: 2,
-    image: community2,
-    alt: "Community Post 2",
-  },
-  {
-    id: 3,
-    image: community3,
-    alt: "Community Post 3",
-  },
-  {
-    id: 4,
-    image: community4,
-    alt: "Community Post 4",
-  },
-  {
-    id: 5,
-    image: community5,
-    alt: "Community Post 5",
-  },
+const FALLBACKS = [
+  community1,
+  community2,
+  community3,
+  community4,
+  community5,
 ];
 
+const COMMUNITY_KEYS = [
+  "community_1",
+  "community_2",
+  "community_3",
+  "community_4",
+  "community_5",
+] as const;
+
 function CommunitySection() {
+  const { data: banners } = useSiteBanners();
+
+  // Each of the 5 photos is editable from CMS > Site Banners >
+  // Homepage > "Loomino Community — Photo N". Falls back to the
+  // bundled default until an admin uploads a replacement.
+  const communityPosts = COMMUNITY_KEYS.map((key, i) => {
+    const banner = banners?.find((b) => b.key === key);
+    const image =
+      (banner?.image ? getMediaUrl(banner.image) : null) ??
+      FALLBACKS[i];
+    return {
+      id: i + 1,
+      image,
+      alt: `Community Post ${i + 1}`,
+    };
+  });
+
   return (
     <section className="bg-[#F0E6D8] py-12 lg:py-20">
       <Container>

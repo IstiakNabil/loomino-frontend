@@ -89,7 +89,7 @@ function Navbar() {
         >
           <NavItem label="Collection" to="/shop" />
           <NavItem label="New In" to="/shop" />
-          <NavItem label="Modiweek" to="/modiweek" />
+          <NavItem label="On Sale" to="/on-sale" />
           <NavItem label="Plus Size" to="/plus-size" />
           <NavItem label="Our Story" to="/sustainability" />
         </ul>

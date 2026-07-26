@@ -27,7 +27,7 @@ interface MobileMenuProps {
 const PRIMARY_LINKS = [
   { label: "Collection", to: "/shop" },
   { label: "New In", to: "/shop" },
-  { label: "Modiweek", to: "/modiweek" },
+  { label: "On Sale", to: "/on-sale" },
   { label: "Plus Size", to: "/plus-size" },
   { label: "Our Story", to: "/sustainability" },
 ];

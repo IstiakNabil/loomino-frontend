@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 
-import { useModiweek } from "@/features/product-details/hooks/useModiweek";
+import { useOnSale } from "@/features/product-details/hooks/useOnSale";
 import MidweekCard from "./MidweekCard";
 
 const MAX_CARDS = 5;
 
 function MidweekSection() {
-  const { data: products } = useModiweek();
+  const { data: products } = useOnSale();
   const items = (products ?? []).slice(0, MAX_CARDS);
 
-  // Nothing marked as Modiweek yet — skip the section rather
+  // Nothing marked as On Sale yet — skip the section rather
   // than show an empty heading with no cards under it.
   if (products && items.length === 0) return null;
 
@@ -18,10 +18,10 @@ function MidweekSection() {
       <div className="mx-auto w-full max-w-[1920px] px-5 md:px-10 lg:px-[108px]">
       <div className="mb-6 flex items-center justify-between lg:mb-10">
         <h2 className="text-[22px] font-semibold text-[#1E1E1E] lg:text-[32px]">
-          Modiweek
+          On Sale
         </h2>
         <Link
-          to="/modiweek"
+          to="/on-sale"
           className="text-[15px] font-medium text-[#4C300D] transition hover:underline"
         >
           See All →

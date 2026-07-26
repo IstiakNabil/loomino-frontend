@@ -46,9 +46,9 @@ export interface MegaMenu {
   /**
    * Tile photo size in px. New In's 208×420 is pulled directly
    * from the real Figma mega-menu frame (not eyeballed).
-   * Collection and Modiweek were sized to match Sustainability
+   * Collection and On Sale were sized to match Sustainability
    * (392×438) per request, rather than their own Figma frame
-   * (Collection's real spec was 288×420) — Modiweek has no
+   * (Collection's real spec was 288×420) — On Sale has no
    * Figma reference at all, since it wasn't in the original
    * design.
    */
@@ -128,12 +128,12 @@ export const MEGA_MENUS: Record<string, MegaMenu> = {
     tileHeight: 420,
   },
 
-  Modiweek: {
+  "On Sale": {
     columns: [
       {
-        title: "Modiweek",
+        title: "On Sale",
         links: [
-          { label: "This Week's Looks", to: "/modiweek" },
+          { label: "This Week's Looks", to: "/on-sale" },
         ],
       },
       {
@@ -145,13 +145,13 @@ export const MEGA_MENUS: Record<string, MegaMenu> = {
     tiles: [
       {
         label: "This Week's Looks",
-        to: "/modiweek",
-        bannerKey: "megamenu_modiweek_1",
+        to: "/on-sale",
+        bannerKey: "megamenu_on_sale_1",
       },
       {
         label: "New In",
         to: "/shop?is_new_arrival=true",
-        bannerKey: "megamenu_modiweek_2",
+        bannerKey: "megamenu_on_sale_2",
       },
     ],
     tileWidth: 392,
